@@ -1,0 +1,75 @@
+/* market-reports.component.scss */
+
+div {
+    margin: 20px;
+  
+    label {
+      display: block;
+      margin-bottom: 5px;
+    }
+  
+    input {
+      width: 100%;
+      padding: 8px;
+      margin-bottom: 10px;
+      box-sizing: border-box;
+    }
+  
+    button {
+      padding: 10px;
+      background-color: #e92525;
+      color: #fff;
+      cursor: pointer;
+      border: none;
+      border-radius: 5px;
+      font-size: 16px;
+      transition: background-color 0.3s ease;
+  
+      &:hover {
+        background-color: #0056b3;
+      }
+    }
+  }
+
+  .list-box {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 200px;
+    height: 100vh;
+    background-color: rgb(202, 45, 45);
+    color: #fff;
+    padding: 20px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+    z-index: 999;
+    transition: width 0.2s ease;
+  }
+  
+  .collapsed {
+    width: 15px; // Set to your desired collapsed width
+  }
+  
+  .hamburger-btn {
+    background: none;
+    border: none;
+    color: #fff;
+    font-size: 20px;
+    cursor: pointer;
+    margin-right: 30px;
+  }
+  
+  .list-item {
+    list-style: none;
+    margin-bottom: 10px;
+  }
+  
+  .list-item-link {
+    text-decoration: none;
+    color: #fff;
+    font-weight: bold;
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+
+  

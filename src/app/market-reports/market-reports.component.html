@@ -1,0 +1,34 @@
+<!-- side bar menu -->
+<div [ngClass]="{'collapsed': isCollapsed}" class="list-box">
+    <button (click)="toggleSidebar()" class="hamburger-btn">&#9776;</button>
+    <ul>
+      <li class="list-item"><a routerLink="/create-post" class="list-item-link">Create a Post</a></li>
+      <li class="list-item"><a routerLink="/inbox" class="list-item-link">Check Inbox</a></li>
+      <li class="list-item"><a routerLink="/market-reports" class="list-item-link">Market Reports</a></li>
+  
+      <li class="list-item"><a routerLink="/add-user" class="list-item-link">Add User</a></li>
+      <li class="list-item"><a routerLink="/edit-user" class="list-item-link">Edit User</a></li>
+      <li class="list-item"><a routerLink="/delete-user" class="list-item-link">Delete User</a></li>
+  
+  
+    </ul>
+  </div>
+<!--  price plot data fields -->
+
+
+<div>
+    <label for="make">Make:</label>
+    <input type="text" id="make" [(ngModel)]="make" placeholder="Enter make">
+  
+    <label for="model">Model:</label>
+    <input type="text" id="model" [(ngModel)]="model" placeholder="Enter model">
+  
+    <label for="minYear">Min Year:</label>
+    <input type="number" id="minYear" [(ngModel)]="minYear" placeholder="Enter min year">
+  
+    <label for="maxYear">Max Year:</label>
+    <input type="number" id="maxYear" [(ngModel)]="maxYear" placeholder="Enter max year">
+  
+    <button (click)="redirectToExternalUrl()">Generate Price plot</button>
+  </div>
+  

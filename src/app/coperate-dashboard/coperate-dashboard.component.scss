@@ -1,0 +1,107 @@
+.list-box {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 200px;
+    height: 100vh;
+    background-color: rgb(202, 45, 45);
+    color: #fff;
+    padding: 20px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+    z-index: 999;
+    transition: width 0.2s ease;
+  }
+  
+  .collapsed {
+    width: 15px; // Set to your desired collapsed width
+  }
+  
+  .hamburger-btn {
+    background: none;
+    border: none;
+    color: #fff;
+    font-size: 20px;
+    cursor: pointer;
+    margin-right: 30px;
+  }
+  
+  .list-item {
+    list-style: none;
+    margin-bottom: 10px;
+  }
+  
+  .list-item-link {
+    text-decoration: none;
+    color: #fff;
+    font-weight: bold;
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+
+  .card-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+  }
+  
+  .card {
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    margin: 15px;
+    width: 300px;
+    background-color: #fff;
+  }
+  
+  .card-header {
+    background-color: #007BFF;
+    color: #fff;
+    padding: 10px;
+    text-align: center;
+  }
+  
+  .card-body {
+    padding: 15px;
+  }
+
+  .card-body button[type="msg"] {
+    background-color: #007BFF;
+    color: #fff;
+    border: none;
+    
+    border-top-left-radius: 5px;
+    border-bottom-left-radius: 5px;
+    font-size: 1rem;
+    padding: 0.5rem 0.5rem;
+
+
+  }
+  
+  /* Style for button with type "makeoffer" */
+  .card-body button[type="makeoffer"] {
+    background-color: #28a745;
+    color: #fff;
+    border: none;
+    font-size: 1rem;
+    padding: 0.5rem 0.5rem;
+    
+  }
+  
+  /* Style for button with type "Accept" */
+  .card-body button[type="Accept"] {
+    background-color: #dc3545;
+    color: #fff;
+    border: none;
+    border-top-right-radius: 5px;
+    border-bottom-right-radius: 5px;
+    font-size: 1rem;
+    padding: 0.5rem 0.5rem;
+    
+  }
+  
+  .card-body button:hover {
+    opacity: 0.8;
+    
+  }
+  

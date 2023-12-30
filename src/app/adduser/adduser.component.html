@@ -1,0 +1,20 @@
+<p>adduser works!</p>
+
+<form class="addUser-form" (ngSubmit)="onSubmit()">
+    <label>Username: <input [(ngModel)]="formData.name" type="text" name="name" required></label><br>
+    <label>Password: <input [(ngModel)]="formData.password" type="password" name="Password" required></label><br>
+    <label>Email: <input [(ngModel)]="formData.email" name="email" required></label><br>
+    <label>Role:
+        <select [(ngModel)]="formData.role" name="Role" required>
+          <option value="user">Individual</option>
+          <option value="seller">Selles Person</option>
+        </select>
+      </label><br>
+
+    <button type="save">Add User</button>
+</form>    
+
+<div *ngIf="isUserAdd" class="message-box">
+    User has been added!
+
+  </div>

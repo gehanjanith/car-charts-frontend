@@ -1,0 +1,53 @@
+/* src/app/messages/messages.component.scss */
+
+/* Style for the whole dialog content */
+mat-dialog-content {
+    margin-bottom: 16px; /* Adjust as needed */
+  }
+  
+  /* Style for the textarea */
+  textarea {
+    width: 100%;
+    min-height: 100px;
+    padding: 8px;
+    box-sizing: border-box;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    margin-bottom: 16px; /* Adjust as needed */
+  }
+  
+  /* Style for the fetched messages section */
+  div * {
+    margin-bottom: 8px; /* Adjust as needed */
+  }
+  
+  /* Style for the Cancel and Send buttons */
+  mat-dialog-actions {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 16px; /* Adjust as needed */
+  }
+  
+  /* Additional styles for the fetched messages list */
+  ul {
+    list-style-type: none;
+    padding: 0;
+  }
+  
+  li {
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    padding: 8px;
+    margin-bottom: 8px; /* Adjust as needed */
+    background-color: #f5f5f5; /* Adjust as needed */
+
+    
+   
+  }
+  
+  .username{
+    font-size:14px;
+    color: rgb(78, 78, 134);
+
+  }
+  

@@ -1,0 +1,53 @@
+<p>coperate-dashboard</p>
+
+<!-- side bar menu -->
+<div [ngClass]="{'collapsed': isCollapsed}" class="list-box">
+    <button (click)="toggleSidebar()" class="hamburger-btn">&#9776;</button>
+    <ul>
+      <li class="list-item"><a routerLink="/create-post" class="list-item-link">Create a Post</a></li>
+      <li class="list-item"><a routerLink="/inbox" class="list-item-link">Check Inbox</a></li>
+      <li class="list-item"><a routerLink="/market-reports" class="list-item-link">Market Reports</a></li>
+  
+      <li class="list-item"><a routerLink="/add-user" class="list-item-link">Add User</a></li>
+      <li class="list-item"><a routerLink="/edit-user" class="list-item-link">Edit User</a></li>
+      <li class="list-item"><a routerLink="/delete-user" class="list-item-link">Delete User</a></li>
+  
+  
+    </ul>
+  </div>
+
+  <!-- *ngFor is used to iterate over carListings -->
+<div class="card-container">
+<div *ngFor="let post of carListings" class="card">
+  <div class="card-header">
+    <h2>{{ post.make }} {{ post.model }} ({{ post.year }})</h2>
+  </div>
+  <!-- Card content -->
+  <div class="card-body">
+    <!-- Display post information -->
+    <p>Post ID: {{ post.id }}</p>
+    <p>Make: {{ post.make }}</p>
+    <p><strong>Body Type:</strong> {{ post.body_type }}</p>
+    <p><strong>City:</strong> {{ post.city }}</p>
+    <p><strong>Condition:</strong> {{ post.condi }}</p>
+    <p><strong>Date:</strong> {{ post.date }}</p>
+    <p><strong>Description:</strong> {{ post.description }}</p>
+    <p><strong>Edition:</strong> {{ post.edition }}</p>
+    <p><strong>Engine Capacity:</strong> {{ post.engine_capacity }}</p>
+    <p><strong>Fuel Type:</strong> {{ post.fuel_type }}</p>
+    <p><strong>Mileage:</strong> {{ post.mileage }}</p>
+    <p><strong>Phone:</strong> {{ post.phone }}</p>
+    <p><strong>Price:</strong> {{ post.price }}</p>
+    <!-- Add other fields as needed -->
+
+    <!-- Button to open message modal -->
+    <button (click)="openMessageModalForPost(post)" type="msg" >Message</button>
+
+    <app-messages *ngIf="selectedPostId === post.id" [postId]="+post.id"></app-messages>
+    
+
+    <button type="makeoffer">Make Offer</button>
+    <button type="Accept">Accept</button>
+  </div>
+</div>
+</div>

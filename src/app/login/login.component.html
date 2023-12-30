@@ -1,0 +1,42 @@
+<!--<div class="login-container">
+    <h2>Login</h2>
+    <form (submit)="login()">
+      <div class="form-group">
+        <label for="username">Username</label>
+        <input type="text" id="username" name="username" [(ngModel)]="username" required>
+      </div>
+      <div class="form-group">
+        <label for="password">Password</label>
+        <input type="password" id="password" name="password" [(ngModel)]="password" required>
+      </div>
+      <button type="submit">Login</button>
+    </form>
+    <p *ngIf="invalidLogin" class="error-message">Invalid username or password</p>
+  </div>
+  -->
+  <!--<p>{{ newdata}}</p>-->
+
+
+  <div class="login-container">
+    <h2>Login</h2>
+    <form (submit)="login()">
+      <div class="form-group">
+        <label for="username">Username:</label>
+        <input type="text" id="username" [(ngModel)]="username" name="username" class="form-control" required>
+      </div>
+      <div class="form-group">
+        <label for="password">Password:</label>
+        <input type="password" id="password" [(ngModel)]="password" name="password" class="form-control" required>
+      </div>
+      <button type="submit" class="btn btn-primary">Login</button>
+      <div class="newuser">
+        New user ? Try sign up...!
+        <button type="adduser" routerLink="/add-user" class="btn btn-primary">SignUp</button>
+      </div>
+    </form>
+    <div *ngIf="invalidLogin" class="alert alert-danger mt-3">
+      Invalid username or password. Please try again.
+    </div>
+  </div>
+  
+  

@@ -1,0 +1,43 @@
+<p>create-post</p>
+
+<div [ngClass]="{'collapsed': isCollapsed}" class="list-box">
+    <button (click)="toggleSidebar()" class="hamburger-btn">&#9776;</button>
+    <ul>
+      <li class="list-item"><a routerLink="/dashboard" class="list-item-link">Home Page</a></li>
+      <li class="list-item"><a routerLink="/inbox" class="list-item-link">Check Inbox</a></li>
+      <li class="list-item"><a routerLink="/market-reports" class="list-item-link">Market Reports</a></li>
+    </ul>
+  </div>
+
+
+  <!-- src/app/post-form/post-form.component.html -->
+  <form class="salepost-form" (ngSubmit)="onSubmit()">
+  <label>make: <input [(ngModel)]="formData.make" type="text" name="price" required></label><br>
+  <label>model: <input [(ngModel)]="formData.model" name="phone" required></label><br>
+  <label>year: <input [(ngModel)]="formData.year" type="number" name="phone" required></label><br>
+  <label>edition: <input [(ngModel)]="formData.edition" name="phone" required></label><br>
+  <label>condition: <input [(ngModel)]="formData.condi" type="text" name="phone" required></label><br>
+  <label>body type: <input [(ngModel)]="formData.body_type" type="text" name="phone" required></label><br>
+  <label>engine_capacity: <input [(ngModel)]="formData.engine_capacity" name="phone" required></label><br>
+  <label>fuel_type: <input [(ngModel)]="formData.fuel_type" type="text" name="phone" required></label><br>
+  <label>mileage: <input [(ngModel)]="formData.mileage" type="number" name="phone" required></label><br>
+  <label>description: <input [(ngModel)]="formData.description" name="phone" required></label><br>
+  <label>city: <input [(ngModel)]="formData.city" type="text" name="phone" required></label><br>
+  <label>Phone: <input [(ngModel)]="formData.phone" type="number" name="phone" required></label><br>
+  <label>price: <input [(ngModel)]="formData.price" type="number" name="phone" required></label><br>
+
+  <!-- Add other form fields based on your data model -->
+  <button type="submit">Submit</button>
+</form>
+
+<!-- Message box -->
+<div *ngIf="isPostSent" class="message-box">
+  Post has been sent!
+  
+  <!--<dialog open>Post has been sent!</dialog>-->
+</div>
+
+
+
+  
+

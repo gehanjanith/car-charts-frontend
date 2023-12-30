@@ -1,0 +1,26 @@
+<p>messages</p>
+
+<!-- Display fetched messages -->
+<div *ngIf="messages.length > 0">
+  <h3>Fetched Messages:</h3>
+  <ul>
+    <li *ngFor="let msg of messages">
+      {{ msg.msg }} - 
+      <div class="username"> {{ msg.user }} </div>
+      
+    </li>
+  </ul>
+</div>
+
+<!-- src/app/messages/messages.component.html -->
+<h2 mat-dialog-title>Send Message</h2>
+
+<mat-dialog-content>
+  <textarea matInput placeholder="Type your message..." [(ngModel)]="message"></textarea>
+</mat-dialog-content>
+
+<mat-dialog-actions>
+  <button mat-button (click)="dialogRef.close()">Cancel</button>
+  <button mat-button color="primary" (click)="sendMessage()">Send</button>
+</mat-dialog-actions>
+
