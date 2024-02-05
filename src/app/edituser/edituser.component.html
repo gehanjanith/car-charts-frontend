@@ -1,4 +1,4 @@
-<p>adduser works!</p>
+<p>edituser works!</p>
 
 <div [ngClass]="{'collapsed': isCollapsed}" class="list-box">
   <button (click)="toggleSidebar()" class="hamburger-btn">&#9776;</button>
@@ -9,21 +9,33 @@
   </ul>
 </div>
 
-<form class="addUser-form" (ngSubmit)="onSubmit()">
+<div class="search-form">
+  <label>Search by Name: <input [(ngModel)]="formData.name" type="text" name="name"></label>
+  <button (click)="onSearch()">Search</button>
+</div>
+
+
+<div *ngIf="isUserFound" class="data-form">
+  <h2>Edit User</h2>
+  <form>
     <label>Username: <input [(ngModel)]="formData.name" type="text" name="name" required></label><br>
     <label>Password: <input [(ngModel)]="formData.password" type="password" name="Password" required></label><br>
     <label>Email: <input [(ngModel)]="formData.email" name="email" required></label><br>
     <label>Role:
-        <select [(ngModel)]="formData.role" name="Role" required>
-          <option value="user">Individual</option>
-          <option value="seller">Selles Person</option>
-        </select>
-      </label><br>
+      <select [(ngModel)]="formData.role" name="Role" required>
+        <option value="user">Individual</option>
+        <option value="seller">Seller</option>
+      </select>
+    </label><br>
+    <button (click)="onSave()">Save Changes</button>
+  </form>
+</div>
 
-    <button type="save">Add User</button>
-</form>    
+<div *ngIf="isUserAdd" class="message-box success">
+  User data has been updated successfully!
+</div>
 
-<div *ngIf="isUserAdd" class="message-box">
-    User has been added!
+<div *ngIf="isEditFailed" class="message-box error">
+  Failed to update user data. Please try again.
+</div>
 
-  </div>

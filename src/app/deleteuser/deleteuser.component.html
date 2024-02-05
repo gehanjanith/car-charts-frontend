@@ -1,0 +1,26 @@
+<p>deleteuser works!</p>
+
+<div [ngClass]="{'collapsed': isCollapsed}" class="list-box">
+  <button (click)="toggleSidebar()" class="hamburger-btn">&#9776;</button>
+  <ul>
+    <li class="list-item"><a routerLink="/dashboard" class="list-item-link">Home Page</a></li>
+    <li class="list-item"><a routerLink="/inbox" class="list-item-link">Check Inbox</a></li>
+    <li class="list-item"><a routerLink="/market-reports" class="list-item-link">Market Reports</a></li>
+  </ul>
+</div>
+
+<div class="search-form">
+  <label>Search by Name: <input [(ngModel)]="formData.name" type="text" name="name"></label>
+  <button (click)="onSearch()">Search</button>
+</div>
+
+<div *ngIf="isUserFound" class="data-form">
+  <h2>Delete User</h2>
+  <form>
+    <label>Username: {{ formData.name }}</label><br>
+    <label>Email: {{ formData.email }}</label><br>
+    <label>Role: {{ formData.role }}</label><br>
+    <button (click)="onDelete()">Delete User</button>
+  </form>
+</div>
+

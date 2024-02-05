@@ -10,6 +10,12 @@ import { DataService } from '../adduser/adduser.service';
 })
 export class AdduserComponent {
 
+  isCollapsed = false;
+
+  toggleSidebar() {
+    this.isCollapsed = !this.isCollapsed;
+  }
+
   isUserAdd = false;
 
   formData: any = {};

@@ -13,10 +13,19 @@
   <button type="submit">Search</button>
 </form>
 
-  <!-- Add buttons/links for sorting -->
+
+<!-- Add buttons/links for sorting -->
 <button (click)="sortByPrice('asc')">Sort by Price (Asc)</button>
 <button (click)="sortByPrice('desc')">Sort by Price (Desc)</button>
 
+<!-- Display search result information -->
+<div *ngIf="cars.length > 0" class="search-results-info">
+  <p>Number of Results: {{ cars.length }}</p>
+  <!-- <p>Maximum Car Price: Rs. {{ formatPrice(getMaxPrice()) }}</p>
+  <p>Minimum Car Price: Rs. {{ formatPrice(getMinPrice()) }}</p> -->
+  <p>Results are Priced Between Rs.{{ formatPrice(getMinPrice()) }} & Rs.{{ formatPrice(getMaxPrice()) }}</p>
+
+</div>
 
 <div class="card-container">
   <div class="card" *ngFor="let car of cars">
@@ -28,7 +37,9 @@
     <p class="card-text">Source: {{ car.supplier }}</p>
     <p class="card-text"><strong> {{ car.priceLabel }}</strong></p>
 
-    <a [href]="car.link" class="btn btn-primary">Details</a>
+    <a [href]="car.link" target="_blank" class="btn btn-primary">Details</a>
+    <!-- <a [href]="car.link" class="btn btn-primary">Details</a> -->
+  
   </div>
   </div>
 </div>

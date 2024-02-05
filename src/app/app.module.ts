@@ -18,6 +18,9 @@ import { MatDialogModule } from '@angular/material/dialog';
 import { MatButtonModule } from '@angular/material/button';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MarketReportsComponent } from './market-reports/market-reports.component';
+import { EdituserComponent } from './edituser/edituser.component';
+import { DeleteuserComponent } from './deleteuser/deleteuser.component';
+import { HomeComponent } from './home/home.component';
 
 
 
@@ -34,6 +37,9 @@ import { MarketReportsComponent } from './market-reports/market-reports.componen
     CoperateDashboardComponent,
     MessagesComponent,
     MarketReportsComponent,
+    EdituserComponent,
+    DeleteuserComponent,
+    HomeComponent,
 
   ],
   imports: [
