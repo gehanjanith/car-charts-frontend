@@ -1,86 +1,190 @@
-.search-box {
-    display: flex;
-    align-items: center;
-    flex-wrap: wrap;
-    margin-top: 1em;
-    background-color: rgb(182, 19, 19);
-    padding: 1em;
+.search-form {
+  display: flex;
+  flex-wrap: wrap;
+  border: 1px solid #ddd; /* Add border */
+  padding: 20px; /* Add padding for spacing */
+  border-radius: 8px; /* Add border radius for rounded corners */
+  justify-content: center; /* Center vertically */
+  align-items: center; /* Center horizontally */
 
+  }
+  
+  .form-group {
+    margin-right: 20px; /* Adjust spacing between form fields */
+  }
+  
+  label {
+    display: block;
+    margin-bottom: 5px;
+  }
+  
+
+  form {
   
     input {
-      flex: 1;
-      padding: 10px;
+      width: 100%;
+      padding: 8px;
+      margin-bottom: 15px;
+      box-sizing: border-box;
       border: 1px solid #ccc;
-      border-radius: 5px;
-      margin-right: 10px;
+      border-radius: 4px;
+      outline: none;
+      transition: border-color 0.3s;
+  
+      &:focus {
+        border-color: #d60000; // Red color on focus
+      }
     }
+    input,
+    select {
+      width: 200px; /* Make inputs and selects same width */
+      padding: 8px;
+      margin-bottom: 15px;
+      box-sizing: border-box;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+      outline: none;
+      transition: border-color 0.3s;
+      font-size: 18px;
+}
   
     button {
-      margin-left: 10px;
+      background-color: #d60000;
+      color: white;
       padding: 10px;
-      background-color: #000;
-      color: #fff;
       border: none;
       border-radius: 5px;
       cursor: pointer;
+      transition: background-color 0.3s;
+      margin-top: 10px;
+      width: 1cm;
+  
+      &:hover {
+        background-color: #9c0000;
+      }
     }
   }
 
+  .sort-btn {
+    padding: 8px 15px;
+    background-color: #d60000;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    margin-right: 10px;
+    transition: background-color 0.3s;
+  
+    &:hover {
+      background-color: #9c0000;
+    }
+  }
+
+
+  
+  .search-results-info {
+    margin-top: 20px;
+    padding: 10px;
+    background-color: #f5f5f5;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+  }
+  
   .card-container {
     display: flex;
     flex-wrap: wrap;
-    justify-content: space-between; // Adjust alignment as needed
+    justify-content: space-around;
+  
+    .card {
+      width: 300px;
+      margin: 20px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      border-radius: 8px;
+      overflow: hidden;
+      transition: transform 0.3s ease-in-out;
+  
+      &:hover {
+        transform: scale(1.05);
+      }
+  
+      img {
+        width: 100%;
+        height: 200px;
+        object-fit: cover;
+      }
+  
+      .card-body {
+        padding: 15px;
+      }
+  
+      .card-title {
+        font-size: 1.2em;
+        margin-bottom: 10px;
+        color: #d60000; // Red color
+      }
+  
+      .card-text {
+        font-size: 14px;
+        margin-bottom: 5px;
+      }
+  
+      .btn-primary {
+        display: block;
+        margin-top: 10px;
+        padding: 8px 15px;
+        background-color: #c70000;
+        color: white;
+        text-decoration: none;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+        text-align: center;
+        transition: background-color 0.3s;
+  
+        &:hover {
+          background-color: #8b0909;
+        }
+      }
+    }
   }
   
-  .card {
-    flex: 0 1 calc(23.33% - 15px); // Adjust the width of each card as needed
-    border: 1px solid #ddd;
-    border-radius: 5px;
-    margin: 10px;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    display: flex;
-    flex-direction: column;
-    max-width: 300px; // Adjust the maximum width of each card
+  .price-slider {
+    margin-bottom: 20px;
+  
+    input[type="range"] {
+      width: 100%;
+      -webkit-appearance: none;
+      appearance: none;
+      height: 15px;
+      background: #d3d3d3;
+      outline: none;
+      opacity: 0.7;
+      -webkit-transition: .2s;
+      transition: opacity .2s;
+      border-radius: 5px;
+    }
+  
+    input[type="range"]::-webkit-slider-thumb {
+      -webkit-appearance: none;
+      appearance: none;
+      width: 25px;
+      height: 25px;
+      background: #d60000;
+      cursor: pointer;
+      border-radius: 50%;
+    }
+  
+    input[type="range"]::-moz-range-thumb {
+      width: 25px;
+      height: 25px;
+      background: #d60000;
+      cursor: pointer;
+      border-radius: 50%;
+    }
+  
+    label {
+      display: block;
+      margin-top: 10px;
+    }
   }
   
-  .card img {
-    width: 100%;
-    height: auto;
-    border-top-left-radius: 5px;
-    border-top-right-radius: 5px;
-  }
-  
-  .card .card-body {
-    flex: 1;
-    display: flex;
-    flex-direction: column;
-    padding: 1rem;
-  }
-  
-  .card .card-title {
-    font-size: 1.25rem;
-    font-weight: bold;
-    margin-bottom: 10px;
-  }
-  
-  .card .card-text {
-    font-size: 1rem;
-  }
-  
-  .card .btn-primary {
-    background-color: #aa0513;
-    color: #fff;
-    text-decoration: none;
-    padding: 0.5rem 1rem;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-    text-align: center;
-    font-size: 1rem;
-  }
-  
-  .card .btn-primary:hover {
-    background-color: #6b0000;
-  }
-   

@@ -1,59 +1,3 @@
-//import { Component } from '@angular/core';
-
-// @Component({
-//   selector: 'app-login',
-//   templateUrl: './login.component.html',
-//   styleUrls: ['./login.component.scss']
-// })
-// export class LoginComponent {
-//   username: string = '';
-//   password: string = '';
-//   invalidLogin: boolean = false;
-
-//   login() {
-//     // Hardcoded username and password for demonstration purposes
-//     const hardcodedUsername = 'user';
-//     const hardcodedPassword = 'password';
-
-//     if (this.username === hardcodedUsername && this.password === hardcodedPassword) {
-//       // Successful login, you can redirect to another page or perform other actions here.
-//       console.log('Login successful');
-//     } else {
-//       // Invalid login, display an error message
-//       this.invalidLogin = true;
-//     }
-//   }
-// }
-
-
-// import { Component, OnInit } from '@angular/core';
-// import { HttpClient } from '@angular/common/http';
-// import { LoginService } from './login.service';
-
-// @Component({
-//   selector: 'app-root',
-//   templateUrl: './login.component.html',
-//   styleUrls: ['./login.component.scss']
-// })
-// export class LoginComponent implements OnInit {
-//   newdata:any;
-//   username: string = '';
-//   password: string = '';
-//   invalidLogin: boolean = false;
-
-//   constructor(private _apiservice:LoginService) { }
-
-//   ngOnInit() {
-// 	this.getData();
-//   }
-
-//   getData() {
-// 	this._apiservice.getdata().subscribe(res=>{
-//   	this.newdata=res;
-// 	})
-//   }
-// }
-
 import { Component, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { LoginService } from './login.service';
@@ -94,7 +38,8 @@ export class LoginComponent implements OnInit {
     this.http.post('http://127.0.0.1:5000/login', loginData)
       .subscribe((response: any) => {
         if (response.success) {
-          // Login successful, you can handle the success scenario here
+          // Login successful
+          sessionStorage.setItem('username', this.username);
           this.invalidLogin = false;
           //this.router.navigate(['dashboard']);
           // Check the role and navigate accordingly
@@ -125,10 +70,6 @@ export class LoginComponent implements OnInit {
       });
   }
 }
-
-
-
-
 
 
 

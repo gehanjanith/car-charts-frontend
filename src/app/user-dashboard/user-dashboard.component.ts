@@ -1,12 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 
 @Component({
-  selector: 'app-dashboard',
-  templateUrl: './dashboard.component.html',
-  styleUrls: ['./dashboard.component.scss']
+  selector: 'app-user-dashboard',
+  templateUrl: './user-dashboard.component.html',
+  styleUrls: ['./user-dashboard.component.scss']
 })
-export class DashboardComponent implements OnInit{
-  
+export class UserDashboardComponent  implements OnInit{
   ngOnInit(): void {
     throw new Error('Method not implemented.');
   }
@@ -15,4 +14,5 @@ export class DashboardComponent implements OnInit{
   toggleSidebar() {
     this.isCollapsed = !this.isCollapsed;
   }
+
 }

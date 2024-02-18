@@ -10,6 +10,10 @@ import { MarketReportsComponent } from './market-reports/market-reports.componen
 import { EdituserComponent } from './edituser/edituser.component';
 import { DeleteuserComponent } from './deleteuser/deleteuser.component';
 import { HomeComponent } from './home/home.component';
+import { UserDashboardComponent } from './user-dashboard/user-dashboard.component';
+import { InboxComponent } from './inbox/inbox.component';
+import { LogoutComponent } from './logout/logout.component';
+//import { PrivateMsgComponent } from './private-msg/private-msg.component';
 
 
 const routes: Routes = [
@@ -25,6 +29,16 @@ const routes: Routes = [
   { path: 'edit-user', component: EdituserComponent },
   { path: 'delete-user', component: DeleteuserComponent },
   { path: 'market-reports', component: MarketReportsComponent},
+  { path: 'user-dashboard', component: UserDashboardComponent},
+  { path: 'inbox', component: InboxComponent},
+  { path: 'logout', component: LogoutComponent},
+  //{ path: 'private-msg', component: PrivateMsgComponent},
+
+
+  
+
+
+  
 
 ];
 

@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { CarService } from './search.service';
 
+
 @Component({
   selector: 'app-search',
   templateUrl: './search.component.html',
@@ -8,20 +9,83 @@ import { CarService } from './search.service';
 })
 export class SearchComponent {
   cars: any[] = [];
-  make!: string;
-  model!: string;
-  minYear!: number;
-  maxYear!: number;
+  originalCars: any[] = []; // Store original unfiltered data
+  makes: string[] = [];
+  models: string[] = [];
+  make: string = '';
+  model: string = '';
+  minYear: number = 0;
+  maxYear: number = 0;
+  isLoading: boolean = false;
 
-  constructor(private carService: CarService) {}
+ minPriceCar: number = 0;;
+ maxPriceCar: number = 0;;
+ priceRange: number[] = []; // Initial price range
+ priceRange2: number = 0;;
+
+
+
+
+  constructor(private carService: CarService) {
+    this.minPriceCar = 0; // Example: Set default to 0
+    
+    // Update initial price range with min and max values
+    this.priceRange = [this.minPriceCar, this.maxPriceCar];
+
+  }
+
+  ngOnInit(): void {
+    this.carService.getMakes().subscribe(makes => {
+      this.makes = makes;
+    });
+  }
+
+  fetchModels(make: string): void {
+    this.carService.getModels(make).subscribe(models => {
+      this.models = models;
+      console.log('fetchModels models:',models )
+    });
+  }
+
+  onMakeSelected(event: Event): void {
+    const selectedMake = (event.target as HTMLSelectElement)?.value;
+    // Update the make property
+    this.make = selectedMake;
+    // Clear the model property
+    this.model = '';
+    this.models = [];
+    console.log('onMakeSelected model:',this.model )
+    // Fetch models for the selected make
+    this.fetchModels(selectedMake);
+  }
+  onModelChange(event: Event): void{
+    const selectedModel = (event.target as HTMLSelectElement)?.value;
+    this.model = selectedModel;
+    console.log('onModelChange model:',this.model )
+  }
+  
 
   searchCars() {
+    this.isLoading = true;
     this.cars = [];
+    this.originalCars = [];
+
     this.carService.searchCars(this.make, this.model, this.minYear, this.maxYear)
       .subscribe(
         (data: any) => {
+          console.log('API make:',this.make )
+          console.log('API model:',this.model )
           // Format prices, calculate quartiles, and handle sorting
           this.cars = this.formatPricesAndSort(data.results);
+          this.maxPriceCar = parseInt(this.getMaxPrice(), 10);
+          this.priceRange = [this.minPriceCar, this.maxPriceCar];
+
+          this.originalCars = this.formatPricesAndSort(data.results);
+          this.cars = [...this.originalCars];
+          console.log('originalCars :',this.originalCars );
+
+
+          this.isLoading = false;
         },
         error => {
           console.error('Error fetching car data:', error);
@@ -40,6 +104,18 @@ export class SearchComponent {
       }
     });
   }
+  
+  onPriceRangeChange(): void {
+    // Filter originalCars based on price range
+    this.cars = this.originalCars.filter(car => {
+      const carPrice = parseFloat(this.formatPrice(car.price));
+      console.log("priceRange :",this.priceRange2,"<",carPrice )
+
+      return carPrice <= this.priceRange2;
+    });
+  }
+  
+
 
   formatPrice(price: string): string {
     if (price === 'Negotiable') {
@@ -88,15 +164,6 @@ export class SearchComponent {
   
     return maxPriceCar === 'Negotiable' ? 'Negotiable' : this.formatPrice(maxPriceCar);
   }
-  // getMinPrice(): string {
-  //   const minPriceCar = this.cars.reduce((min, car) => {
-  //     const carPrice = this.formatPrice(car.price);
-  //     console.log('carPrice :' , carPrice)
-  //     return carPrice < min ? carPrice : min;
-  //   }, '9999999999');
-  //   console.log('minPriceCar :' , minPriceCar)  
-  //   return minPriceCar === 'Negotiable' ? 'Negotiable' : this.formatPrice(minPriceCar);
-  // }
   
   getMinPrice(): string {
     const numericPrices = this.cars
@@ -112,6 +179,7 @@ export class SearchComponent {
   
     return this.formatPrice(minPrice.toString());
   }
-  
-  
-}
+
+
+ 
+  }

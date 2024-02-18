@@ -1,11 +1,78 @@
-/* src/app/messages/messages.component.scss */
+/* Style for the whole comments section */
+.messages-container {
+  max-height: calc(100vh - 200px); /* Adjust height as needed -  300px */
+  overflow-y: auto; /* Enable vertical scrollbar */
+}
 
-/* Style for the whole dialog content */
-mat-dialog-content {
-    margin-bottom: 16px; /* Adjust as needed */
-  }
-  
-  /* Style for the textarea */
+.comments-section {
+  padding: 20px;
+}
+
+/* Style for the fetched messages section */
+.fetched-messages {
+  margin-bottom: 20px;
+}
+
+/* Additional styles for the fetched messages list */
+.messages-list {
+  list-style-type: none;
+  padding: 0;
+}
+
+.message-item {
+  background-color: #f0f0f0;
+  border-radius: 10px;
+  padding: 15px;
+  margin-bottom: 15px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.message-item .username {
+  font-size: 14px;
+  font-weight: bold;
+  color: #333;
+}
+
+.message-item .message-content {
+  font-size: 16px;
+  color: #555;
+}
+
+/* Style for the Cancel and Send buttons */
+.message-actions {
+  display: flex;
+  justify-content: space-between;
+}
+
+.cancel-button {
+  background-color: #ddd;
+  color: #333;
+  padding: 10px 20px;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.cancel-button:hover {
+  background-color: #c0c0c0;
+}
+
+.send-button {
+ 
+  font-weight: bold;
+  background-color: #ff0000b7;
+  color: #fff;
+  padding: 10px 20px;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.send-button:hover {
+  background-color: #800808;
+}
+
+/* Style for the textarea */
   textarea {
     width: 100%;
     min-height: 100px;
@@ -15,39 +82,4 @@ mat-dialog-content {
     border-radius: 4px;
     margin-bottom: 16px; /* Adjust as needed */
   }
-  
-  /* Style for the fetched messages section */
-  div * {
-    margin-bottom: 8px; /* Adjust as needed */
-  }
-  
-  /* Style for the Cancel and Send buttons */
-  mat-dialog-actions {
-    display: flex;
-    justify-content: space-between;
-    margin-top: 16px; /* Adjust as needed */
-  }
-  
-  /* Additional styles for the fetched messages list */
-  ul {
-    list-style-type: none;
-    padding: 0;
-  }
-  
-  li {
-    border: 1px solid #ccc;
-    border-radius: 4px;
-    padding: 8px;
-    margin-bottom: 8px; /* Adjust as needed */
-    background-color: #f5f5f5; /* Adjust as needed */
 
-    
-   
-  }
-  
-  .username{
-    font-size:14px;
-    color: rgb(78, 78, 134);
-
-  }
-  

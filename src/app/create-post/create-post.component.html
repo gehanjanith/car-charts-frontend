@@ -1,43 +1,73 @@
-<p>create-post</p>
+<h1>Create an Advertisment</h1>
 
-<div [ngClass]="{'collapsed': isCollapsed}" class="list-box">
-    <button (click)="toggleSidebar()" class="hamburger-btn">&#9776;</button>
-    <ul>
-      <li class="list-item"><a routerLink="/dashboard" class="list-item-link">Home Page</a></li>
-      <li class="list-item"><a routerLink="/inbox" class="list-item-link">Check Inbox</a></li>
-      <li class="list-item"><a routerLink="/market-reports" class="list-item-link">Market Reports</a></li>
-    </ul>
-  </div>
-
-
-  <!-- src/app/post-form/post-form.component.html -->
-  <form class="salepost-form" (ngSubmit)="onSubmit()">
-  <label>make: <input [(ngModel)]="formData.make" type="text" name="price" required></label><br>
-  <label>model: <input [(ngModel)]="formData.model" name="phone" required></label><br>
-  <label>year: <input [(ngModel)]="formData.year" type="number" name="phone" required></label><br>
-  <label>edition: <input [(ngModel)]="formData.edition" name="phone" required></label><br>
-  <label>condition: <input [(ngModel)]="formData.condi" type="text" name="phone" required></label><br>
-  <label>body type: <input [(ngModel)]="formData.body_type" type="text" name="phone" required></label><br>
-  <label>engine_capacity: <input [(ngModel)]="formData.engine_capacity" name="phone" required></label><br>
-  <label>fuel_type: <input [(ngModel)]="formData.fuel_type" type="text" name="phone" required></label><br>
-  <label>mileage: <input [(ngModel)]="formData.mileage" type="number" name="phone" required></label><br>
-  <label>description: <input [(ngModel)]="formData.description" name="phone" required></label><br>
-  <label>city: <input [(ngModel)]="formData.city" type="text" name="phone" required></label><br>
-  <label>Phone: <input [(ngModel)]="formData.phone" type="number" name="phone" required></label><br>
-  <label>price: <input [(ngModel)]="formData.price" type="number" name="phone" required></label><br>
-
-  <!-- Add other form fields based on your data model -->
-  <button type="submit">Submit</button>
-</form>
-
-<!-- Message box -->
-<div *ngIf="isPostSent" class="message-box">
-  Post has been sent!
-  
-  <!--<dialog open>Post has been sent!</dialog>-->
+ <div [ngClass]="{'collapsed': isCollapsed}" class="list-box">
+  <button (click)="toggleSidebar()" class="hamburger-btn">&#9776;</button>
+  <ul>
+    <li class="list-item"><a routerLink="/dashboard" class="list-item-link">Home Page</a></li>
+    <li class="list-item"><a routerLink="/inbox" class="list-item-link">Check Inbox</a></li>
+    <li class="list-item"><a routerLink="/market-reports" class="list-item-link">Market Reports</a></li>
+  </ul>
 </div>
 
+ <div class="create-post-container">
+  <div class="form-container">
+    <form (ngSubmit)="onSubmit()">
+      <label for="make">Make:</label>
+      <!-- <input id="make" type="text" name="make" [(ngModel)]="formData.make" required> -->
+      <select id="make" [(ngModel)]="formData.make" (change)="onMakeSelected($event)" required name="make">
+        <option *ngFor="let make of makes" [value]="make">{{ make }}</option>
+      </select>
+
+      <label for="model">Model:</label>
+      <!-- <input id="model" type="text" name="model" [(ngModel)]="formData.model" required> -->
+      <select id="model" [(ngModel)]="formData.model"  [disabled]="!make" (change)="onModelChange($event)" required name="model">
+        <option *ngFor="let model of models" [value]="model">{{ model }}</option>
+      </select>
+
+      <label for="year">Year:</label>
+      <input id="year" type="number" name="year" [(ngModel)]="formData.year" required>
+
+      <label for="edition">Edition:</label>
+      <input id="edition" type="text" name="edition" [(ngModel)]="formData.edition" required>
+
+      <label for="condition">Condition:</label>
+      <input id="condition" type="text" name="condition" [(ngModel)]="formData.condi" required>
+
+      <label for="bodyType">Body Type:</label>
+      <input id="bodyType" type="text" name="bodyType" [(ngModel)]="formData.body_type" required>
+
+      <label for="engineCapacity">Engine Capacity:</label>
+      <input id="engineCapacity" type="text" name="engineCapacity" [(ngModel)]="formData.engine_capacity" required>
+
+      <label for="fuelType">Fuel Type:</label>
+      <select id="fuelType" name="fuelType" [(ngModel)]="formData.fuel_type" required>
+        <option value="Petrol">Petrol</option>
+        <option value="Diesel">Diesel</option>
+        <option value="Hybrid">Hybrid</option>
+        <option value="Electric">Electric</option>
+      </select>
+
+      <label for="mileage">Mileage:</label>
+      <input id="mileage" type="number" name="mileage" [(ngModel)]="formData.mileage" required>
+
+      <label for="description">Description:</label>
+      <textarea id="description" name="description" [(ngModel)]="formData.description" required></textarea>
 
 
-  
+      <label for="city">City:</label>
+      <input id="city" type="text" name="city" [(ngModel)]="formData.city" required>
 
+      <label for="phone">Phone:</label>
+      <input id="phone" type="text" name="phone" [(ngModel)]="formData.phone" minlength="10" maxlength="10" required>
+
+      <label for="price">Price:</label>
+      <input id="price" type="number" name="price" [(ngModel)]="formData.price" required>
+
+      <button type="submit">Submit</button>
+    </form>
+  </div>
+
+  <div *ngIf="isPostSent" class="message-box">
+    Post has been sent!
+  </div>
+</div>

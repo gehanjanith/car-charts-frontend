@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { DataService } from '../create-post/create-post.service';
 
+
 @Component({
   selector: 'app-create-post',
   templateUrl: './create-post.component.html',
@@ -9,9 +10,15 @@ import { DataService } from '../create-post/create-post.service';
 export class CreatePostComponent {
 
   isPostSent = false;
+  makes: string[] = [];
+  models: string[] = [];
+  make: string = '';
+  model: string = '';
 
   ngOnInit(): void {
-    throw new Error('Method not implemented.');
+    this.dataService.getMakes().subscribe(makes => {
+      this.makes = makes;
+    });
   }
   isCollapsed = false;
 
@@ -22,20 +29,59 @@ export class CreatePostComponent {
   formData: any = {};
 
   constructor(private dataService: DataService) {}
+  
+  fetchModels(make: string): void {
+    this.dataService.getModels(make).subscribe(models => {
+      this.models = models;
+      console.log('fetchModels models:',models )
+    });
+  }
+
+  onMakeSelected(event: Event): void {
+    const selectedMake = (event.target as HTMLSelectElement)?.value;
+    // Update the make property
+    this.make = selectedMake;
+    // Clear the model property
+    this.model = '';
+    this.models = [];
+    console.log('onMakeSelected model:',this.model )
+    // Fetch models for the selected make
+    this.fetchModels(selectedMake);
+  }
+  onModelChange(event: Event): void{
+    const selectedModel = (event.target as HTMLSelectElement)?.value;
+    this.model = selectedModel;
+    console.log('onModelChange model:',this.model )
+  }
 
   onSubmit() {
-    this.dataService.postData(this.formData).subscribe(
-      (response) => {
-        console.log(response);
-        // Handle success, e.g., show a success message
-      },
-      (error) => {
-        console.error(error);
-        // Handle error, e.g., show an error message
-      }
-    );
-    this.isPostSent = true;
+    // Get the username from session storage
+    const username = sessionStorage.getItem('username');
+  
+    // Check if username exists
+    if (username) {
+      // Map username to the user field in formData
+      this.formData.user = username;
+  
+      // Post data to the server
+      this.dataService.postData(this.formData).subscribe(
+        () => {
+          this.isPostSent = true;
+          console.log("formData sucessflly saved",this.formData);
+        },
+        (error) => {
+          console.error('Error submitting data:', error);
+          // Handle error, e.g., display an error message to the user
+        }
+      );
+    } else {
+      console.error('Username not found in session storage.');
+      // Handle the case where username is not found in session storage
+    }
   }
+  
+
+
 
 
 

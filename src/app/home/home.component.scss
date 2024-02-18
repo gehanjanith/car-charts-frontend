@@ -3,11 +3,10 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    height: 100vh; // Set height to 100% of the viewport height
+    height: 90vh; // Set height to 100% of the viewport height
     text-align: center;
     opacity: 0;
     animation: fadeIn 1.5s ease-in-out forwards;
-   // background: linear-gradient(to bottom, #ff0000, #800000);
     h1 {
       font-size: 2.5em;
       margin-bottom: 20px;
@@ -19,12 +18,20 @@
     }
     .bubbles {
         position: relative;
-        width: 100vh;
+        width: 90vh;
         height: 100vh;
-        overflow: hidden;
+        overflow: visible;
       }
+      .text{
+        align-items: center;
+        margin-top: 1%;
+    
+      }
+
+     
     
   }
+  
   
   @keyframes fadeIn {
     from {
@@ -62,7 +69,7 @@ body {
   .bubble {
     position: absolute;
     left: var(--bubble-left-offset);
-    bottom: -75%;
+    bottom: 1%;
     display: block;
     width: var(--bubble-radius);
     height: var(--bubble-radius);
@@ -83,7 +90,7 @@ body {
   
     @for $i from 0 through $bubble-count {
       &:nth-child(#{$i}) {
-        --bubble-left-offset: #{random_range(0vw, 100vw)};
+        --bubble-left-offset: #{random_range(-40vw, 60vw)};
         --bubble-radius: #{random_range(1vw, 10vw)};
         --bubble-float-duration: #{random_range(6s, 12s)};
         --bubble-sway-duration: #{random_range(4s, 6s)};

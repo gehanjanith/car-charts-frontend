@@ -16,9 +16,10 @@ fuel_type: string;
 mileage: string;
 phone: string;
 price: string;
+  user: string;
     // Add other properties as needed
   
-    constructor(id: string, title: string, make: string,model: string,year: string,body_type: string,city: string,condi: string,date: string,description: string,edition: string,engine_capacity: string,fuel_type: string,mileage: string,phone: string,price: string ) {
+    constructor(id: string, title: string, make: string,model: string,year: string,body_type: string,city: string,condi: string,date: string,description: string,edition: string,engine_capacity: string,fuel_type: string,mileage: string,phone: string,price: string,user: string ) {
       this.id = id;
       this.title = title;
       this.make = make;
@@ -34,6 +35,8 @@ price: string;
       this.mileage = mileage;
       this.phone = phone;
       this.price = price;
+      this.user = user;
+
 
       this.edition = edition;
       // Initialize other properties as needed

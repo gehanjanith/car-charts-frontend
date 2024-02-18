@@ -1,30 +1,37 @@
 import { Component, Inject, Input, OnInit } from '@angular/core';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
-import { MessageService } from './message.service';
+import { PrivateMessageService } from './private-msg.service';
 
 @Component({
-  selector: 'app-messages',
-  templateUrl: './messages.component.html',
-  styleUrls: ['./messages.component.scss']
+  selector: 'app-private-msg',
+  templateUrl: './private-msg.component.html',
+  styleUrls: ['./private-msg.component.scss']
 })
-export class MessagesComponent implements OnInit {
+export class PrivateMsgComponent implements OnInit {
   message: string = '';
   messages: any[] = [];
   username: string | null = '';
 
-  // Mark postId as an input property
+  // Mark postId, user as an input property
+  @Input() user!: string;
   @Input() postId!: number;
+  @Input() owner!: string;
 
   constructor(
-    public dialogRef: MatDialogRef<MessagesComponent>,
+    public dialogRef: MatDialogRef<PrivateMsgComponent>,
     @Inject(MAT_DIALOG_DATA) public data: any,
-    private messageService: MessageService
+    private messageService: PrivateMessageService
   ) {}
 
   ngOnInit(): void {
     // Use this.postId instead of this.data.postId
+    this.user  = this.data.user;
+    console.log('fetchMessages-before init user', this.user);
     this.postId  = this.data.postId;
-    console.log('fetchMessages-before init', this.postId);
+    console.log('fetchMessages-before init post', this.postId);
+
+    this.owner  = this.data.owner;
+    console.log('fetchMessages-before init owner', this.owner);
 
     // Get username from session storage
     this.username = sessionStorage.getItem('username');
@@ -35,8 +42,8 @@ export class MessagesComponent implements OnInit {
 
   fetchMessages() {
     // Use this.postId instead of this.data.postId
-    this.messageService.getMessages(this.postId).subscribe((data) => {
-      console.log('fetchMessages', this.postId);
+    this.messageService.getPrivateMessagesPerPost(this.postId,this.user,this.owner).subscribe((data) => {
+      console.log('fetchMessages user', this.user,this.owner);
       this.messages = data;
     });
   }
@@ -48,7 +55,7 @@ export class MessagesComponent implements OnInit {
     }
 
     const { postId } = this.data;
-    this.messageService.saveMessage(postId, this.message, this.username).subscribe(
+    this.messageService.savePrivateMessage(postId, this.message, this.username).subscribe(
       (response) => {
         console.log(response);
         // Optionally handle success (close modal, show success message, etc.)
@@ -60,4 +67,5 @@ export class MessagesComponent implements OnInit {
       }
     );
   }
+
 }

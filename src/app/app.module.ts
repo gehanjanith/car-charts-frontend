@@ -21,6 +21,10 @@ import { MarketReportsComponent } from './market-reports/market-reports.componen
 import { EdituserComponent } from './edituser/edituser.component';
 import { DeleteuserComponent } from './deleteuser/deleteuser.component';
 import { HomeComponent } from './home/home.component';
+import { UserDashboardComponent } from './user-dashboard/user-dashboard.component';
+import { InboxComponent } from './inbox/inbox.component';
+import { LogoutComponent } from './logout/logout.component';
+import { PrivateMsgComponent } from './private-msg/private-msg.component';
 
 
 
@@ -40,6 +44,10 @@ import { HomeComponent } from './home/home.component';
     EdituserComponent,
     DeleteuserComponent,
     HomeComponent,
+    UserDashboardComponent,
+    InboxComponent,
+    LogoutComponent,
+    PrivateMsgComponent,
 
   ],
   imports: [
@@ -50,8 +58,7 @@ import { HomeComponent } from './home/home.component';
     NgxApexchartsModule,
     MatDialogModule,
     MatButtonModule,
-    BrowserAnimationsModule,
-    
+    BrowserAnimationsModule,    
    
   ],
   providers: [],

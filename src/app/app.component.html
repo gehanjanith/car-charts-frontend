@@ -4,7 +4,11 @@
     <nav>
       <ul>
         <li> <a href="#" routerLink="/search">Search</a> </li>
-        <li> <a href="#" routerLink="/login">Login</a> </li>
+        <!-- <li> <a href="#" routerLink="/login">Login</a> </li> -->
+        <li> 
+          <a href="#" *ngIf="isLoggedIn()" routerLink="/logout">Logout</a> 
+          <a href="#" *ngIf="!isLoggedIn()" routerLink="/login">Login</a> 
+        </li>
       </ul>
     </nav>
   </div>
