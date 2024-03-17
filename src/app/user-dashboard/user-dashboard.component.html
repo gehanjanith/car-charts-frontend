@@ -1,13 +1,57 @@
-<p>user-dashboard</p>
+<div class="hello-user">
+  <h2>Hello, {{ username }}</h2>
+</div>
+<!-- <h2>User Dashboard</h2> -->
 
 <div [ngClass]="{'collapsed': isCollapsed}" class="list-box">
-    <button (click)="toggleSidebar()" class="hamburger-btn">&#9776;</button>
-    <ul>
-      <li class="list-item"><a routerLink="/create-post" class="list-item-link">Create a Post</a></li>
-      <li class="list-item"><a routerLink="/inbox" class="list-item-link">Check Inbox</a></li>
-      <li class="list-item"><a routerLink="/market-reports" class="list-item-link">Market Reports</a></li>
+  <button (click)="toggleSidebar()" class="hamburger-btn">&#9776;</button>
+  <ul>
+    <li class="list-item"><a routerLink="/create-post" class="list-item-link">Create a Post</a></li>
+    <li class="list-item"><a routerLink="/inbox" class="list-item-link">Check Inbox</a></li>
+    <li class="list-item"><a routerLink="/market-reports" class="list-item-link">Market Reports</a></li>
+    <li class="list-item"><a routerLink="/models" class="list-item-link">Model Search</a></li>
 
-  
-    </ul>
+    
+    <li class="list-item"><a routerLink="/appraisal-request" class="list-item-link">Appraisal Request</a></li>
+    <li class="list-item"><a routerLink="/appraisal-inbox" class="list-item-link">Appraisal Inbox</a></li>
+
+
+    
+  </ul>
+</div>
+
+<div class="model-report">
+  <h2>Model Based Market Index</h2>
+  <table>
+    <thead>
+      <tr>
+        <th (click)="sortBy('make')">Make</th>
+        <th (click)="sortBy('min_price')">Min Price</th>
+        <th (click)="sortBy('max_price')">Max Price</th>
+        <th (click)="sortBy('avg_price_last_day')">Average Price</th>
+        <th (click)="sortBy('percentage_difference')">Percentage Change</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let item of getPageItems()">
+      <!-- <tr *ngFor="let item of modelReport"> -->
+        <td>{{ item.make }} {{ item.model }} {{ item.year }}</td>
+        <td>{{ item.min_price | currency:'LKR ' }}</td>
+        <td>{{ item.max_price | currency:'LKR ' }}</td>
+        <td>{{ item.avg_price_last_day | currency:'LKR ' }}</td>
+        <td [ngClass]="{ 'green-text': item.percentage_difference > 0, 'red-text': item.percentage_difference < 0 }">
+          {{ item.percentage_difference | number:'1.2-2' }}%
+          <span *ngIf="item.percentage_difference > 0" class="up-arrow">&#9650;</span>
+          <span *ngIf="item.percentage_difference < 0" class="down-arrow">&#9660;</span>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+
+  <div class="pagination">
+    <button (click)="prevPage()" [disabled]="currentPage === 1">Previous</button>
+    <span>Page {{ currentPage }} of {{ getPageCount() }}</span>
+    <button (click)="nextPage()" [disabled]="currentPage === getPageCount()">Next</button>
   </div>
-  
+
+</div>

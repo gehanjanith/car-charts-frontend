@@ -1,0 +1,65 @@
+<h1>Make an Request for valuate Your Vehical</h1>
+
+ <div [ngClass]="{'collapsed': isCollapsed}" class="list-box">
+  <button (click)="toggleSidebar()" class="hamburger-btn">&#9776;</button>
+  <ul>
+    <li class="list-item"><a routerLink="/dashboard" class="list-item-link">Home Page</a></li>
+    <li class="list-item"><a routerLink="/inbox" class="list-item-link">Check Inbox</a></li>
+    <li class="list-item"><a routerLink="/market-reports" class="list-item-link">Market Reports</a></li>
+  </ul>
+</div>
+
+ <div class="create-post-container">
+  <div class="form-container">
+    <form (ngSubmit)="onSubmit()">
+      <label for="make">Make:</label>
+      <!-- <input id="make" type="text" name="make" [(ngModel)]="formData.make" required> -->
+      <select id="make" [(ngModel)]="formData.make" (change)="onMakeSelected($event)" required name="make">
+        <option *ngFor="let make of makes" [value]="make">{{ make }}</option>
+      </select>
+
+      <label for="model">Model:</label>
+      <!-- <input id="model" type="text" name="model" [(ngModel)]="formData.model" required> -->
+      <select id="model" [(ngModel)]="formData.model"  [disabled]="!make" (change)="onModelChange($event)" required name="model">
+        <option *ngFor="let model of models" [value]="model">{{ model }}</option>
+      </select>
+
+      <label for="year">Year:</label>
+      <input id="year" type="number" name="year" [(ngModel)]="formData.year" required>
+
+      <label for="edition">Edition:</label>
+      <input id="edition" type="text" name="edition" [(ngModel)]="formData.edition" required>
+
+      <label for="condition">Condition:</label>
+      <input id="condition" type="text" name="condition" [(ngModel)]="formData.condi" required>
+
+      <label for="bodyType">Body Type:</label>
+      <input id="bodyType" type="text" name="bodyType" [(ngModel)]="formData.body_type" required>
+
+      <label for="engineCapacity">Engine Capacity:</label>
+      <input id="engineCapacity" type="text" name="engineCapacity" [(ngModel)]="formData.engine_capacity" required>
+
+      <label for="fuelType">Fuel Type:</label>
+      <select id="fuelType" name="fuelType" [(ngModel)]="formData.fuel_type" required>
+        <option value="Petrol">Petrol</option>
+        <option value="Diesel">Diesel</option>
+        <option value="Hybrid">Hybrid</option>
+        <option value="Electric">Electric</option>
+      </select>
+
+      <label for="mileage">Mileage:</label>
+      <input id="mileage" type="number" name="mileage" [(ngModel)]="formData.mileage" required>
+
+      <label for="description">Description:</label>
+      <textarea id="description" name="description" [(ngModel)]="formData.description" required></textarea>
+
+
+      <button type="submit">Submit</button>
+    </form>
+  </div>
+
+  <div *ngIf="isPostSent" class="message-box">
+    Valuation Request has been sent!
+  </div>
+</div>
+

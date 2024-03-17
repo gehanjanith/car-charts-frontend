@@ -1,0 +1,29 @@
+<h1>Appraisal Inbox</h1>
+<div class="hello-user">
+    <h2>Hello, {{ username }}</h2>
+</div>
+
+<div class="appraisal-inbox">
+    
+    <div class="card-container">
+      <div class="card" *ngFor="let appraisal of appraisalListings">
+        <div class="card-header">
+          Appraisal ID: {{ appraisal.id }}
+        </div>
+        <div class="card-body">
+          <p><strong>Make:</strong> {{ appraisal.make }}</p>
+          <p><strong>Model:</strong> {{ appraisal.model }}</p>
+          <p><strong>Year:</strong> {{ appraisal.year }}</p>
+          <p><strong>Posted Date:</strong> {{ appraisal.posted_date }}</p>
+          <p><strong>Valuation:</strong> {{ appraisal.valuation }}</p>
+          <p><strong>Comments:</strong> {{ appraisal.comments }}</p>
+          <p><strong>Appraiser:</strong> {{ appraisal.appraiser }}</p>
+          <p><strong>Appraised Date:</strong> {{ appraisal.appraised_date }}</p>
+        </div>
+        <button (click)="openChatModalForPost(appraisal)" type="pvtMsg" >See Messages</button>
+
+      </div>
+    </div>
+    <p *ngIf="!appraisalListings || appraisalListings.length === 0">No appraisals found.</p>
+  </div>
+  

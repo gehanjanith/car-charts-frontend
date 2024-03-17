@@ -21,4 +21,10 @@ export class CarService {
   searchCars(make: string, model: string, minYear: number, maxYear: number): Observable<any> {
     return this.http.get(`${this.baseUrl}/scrape/${make}/${model}?minYear=${minYear}&maxYear=${maxYear}`);
   }
+
+  getModelsYear(make: string, model: string): Observable<string[]> {
+    return this.http.get<string[]>(`${this.baseUrl}/year/${make}/${model}`);
+  }
+
+  
 }

@@ -1,4 +1,4 @@
-<p>deleteuser works!</p>
+<h1>Delete User</h1>
 
 <div [ngClass]="{'collapsed': isCollapsed}" class="list-box">
   <button (click)="toggleSidebar()" class="hamburger-btn">&#9776;</button>
@@ -15,7 +15,7 @@
 </div>
 
 <div *ngIf="isUserFound" class="data-form">
-  <h2>Delete User</h2>
+  <h2>Are you Sure to Delete this User?</h2>
   <form>
     <label>Username: {{ formData.name }}</label><br>
     <label>Email: {{ formData.email }}</label><br>

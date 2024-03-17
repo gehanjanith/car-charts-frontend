@@ -3,7 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
 import { MessagesComponent } from '../messages/messages.component';
 import { Post } from '../coperate-dashboard/post.model'; // Import the Post model
-import { PrivateMsgComponent } from '../private-msg/private-msg.component';
+import { InboxChatsComponent } from '../inbox-chats/inbox-chats.component';
 import { Router } from '@angular/router';
 
 @Component({
@@ -74,7 +74,7 @@ export class InboxComponent implements OnInit{
      //open messages
      this.selectedPostId = post.id;
    }
-   openPrivateMessageModalForPost(post: Post) {
+   openChatModalForPost(post: Post) {
      // Assuming each post has a 'postId' property
      
    
@@ -83,18 +83,11 @@ export class InboxComponent implements OnInit{
      const owner = post.user;
      console.log('post',postId)
      console.log('owner',owner)
-        // Check if the username and owner are the same
-     if (this.username === owner) {
-       // If they are the same, navigate to the inbox page
-       this.router.navigate(['/inbox']);
-     } else {
-       // If they are different, open the private message modal
-       this.openPrivateMessageModal(postId, this.username, owner);
+     this.openChatModal(postId, this.username, owner);
        this.selectedPostId = post.id;
-     }
  
    }
-   openPrivateMessageModal(postId: string, user: string, owner: string) {
+   openChatModal(postId: string, user: string, owner: string) {
      console.log('postId : ',postId)
      console.log('user name : ',user)
      console.log('owner in openPrivateMessageModal : ',owner)
@@ -104,7 +97,7 @@ export class InboxComponent implements OnInit{
        data: { postId, user, owner },
      };
  
-     const dialogRef = this.dialog.open(PrivateMsgComponent, dialogConfig);
+     const dialogRef = this.dialog.open(InboxChatsComponent, dialogConfig);
  
      dialogRef.afterClosed().subscribe((result) => {
        console.log(`Dialog result: ${result}`);

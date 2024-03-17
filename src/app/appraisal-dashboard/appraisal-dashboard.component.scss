@@ -50,7 +50,7 @@
     border-radius: 8px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     margin: 15px;
-    width: 500px;
+    width: 300px;
     background-color: #fff;
   }
   
@@ -64,24 +64,13 @@
   .card-body {
     padding: 15px;
   }
-
-  .card-body button[type="msg"] {
-    background-color: #007BFF;
-    color: #fff;
-    border: none;
-    
-    border-top-left-radius: 5px;
-    border-bottom-left-radius: 5px;
-    font-size: 1rem;
-    padding: 0.5rem 0.5rem;
-
-
-  }
   
   /* Style for button with type "makeoffer" */
   .card-body button[type="pvtMsg"] {
     background-color: #28a745;
     color: #fff;
+    border-top-left-radius: 5px;
+    border-bottom-left-radius: 5px;
     border: none;
     font-size: 1rem;
     padding: 0.5rem 0.5rem;
@@ -89,7 +78,7 @@
   }
   
   /* Style for button with type "Accept" */
-  .card-body button[type="Accept"] {
+  .card-body button[type="Valuate"] {
     background-color: #dc3545;
     color: #fff;
     border: none;

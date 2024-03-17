@@ -1,0 +1,31 @@
+<h2>Inbox Chats:</h2>
+
+ <div class="modal-body">
+    <div class="user-list">
+      <h3><strong>Chats: </strong></h3>
+      <div class="user-container" *ngFor="let user of users" (click)="loadMessagesForUser(user)">
+        <div class="user-box">
+          <span>{{ user }}</span>
+        </div>
+      </div>
+    </div>
+  
+    <div class="message-list" *ngIf="selectedUser">
+      <h3><strong>Messages From {{ selectedUser }}</strong></h3>
+      <ul>
+        <li *ngFor="let message of messages">
+          {{ message }}
+        </li>
+      </ul>
+    </div>
+  </div>
+  
+  <div class="modal-footer">
+    <textarea [(ngModel)]="newMessage" placeholder="Type your message..."></textarea>
+  </div>
+  
+  <mat-dialog-actions class="message-actions">
+    <button mat-button class="cancel-button" (click)="dialogRef.close()">Cancel</button>
+    <button mat-button color="primary" class="send-button" (click)="sendMessage()">Send</button>
+  </mat-dialog-actions>
+  

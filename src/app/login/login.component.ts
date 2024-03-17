@@ -53,6 +53,9 @@ export class LoginComponent implements OnInit {
           case 'user':
             this.router.navigate(['user-dashboard']);
             break;
+          case 'appraiser':
+            this.router.navigate(['appraisal-dashboard']);
+            break;  
           default:
             // Handle other roles if needed
             break;

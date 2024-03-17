@@ -43,3 +43,165 @@
     text-decoration: underline;
   }
 }
+
+
+// table {
+//   width: 100%;
+//   border-collapse: collapse;
+// }
+
+// th, td {
+//   border: 1px solid #dddddd;
+//   text-align: left;
+//   padding: 8px;
+// }
+
+// th {
+//   background-color: #f2f2f2;
+// }
+
+.user-dropdown {
+  position: relative;
+  width: 100%;
+
+  .dropdown-btn {
+    background-color: #ac2323;
+    border: none;
+    color: white;
+    padding: 10px 0; /* Adjust padding */
+    text-align: center;
+    text-decoration: none;
+    display: block; /* Make the button a block element */
+    width: 100%; /* Make the button full-width */
+    font-size: 16px;
+    cursor: pointer;
+    border-radius: 4px;
+    margin-top: 4%;
+  }
+
+  .dropdown-content {
+    display: none;
+    position: absolute;
+    width: 100%; /* Make the dropdown full-width */
+    background-color: #f9f9f9;
+    z-index: 1;
+  }
+
+  .dropdown-content table {
+    width: 100%;
+    border-collapse: collapse;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+  }
+
+  .dropdown-content th, .dropdown-content td {
+    border: 1px solid #ddd;
+    padding: 8px;
+    text-align: left;
+  }
+
+  .dropdown-content th {
+    background-color: #f2f2f2;
+  }
+
+  .dropdown-content tr:hover {
+    background-color: #f2f2f2;
+  }
+  
+  .show {
+    display: block;
+  }
+}
+
+
+
+
+
+
+/* Add your custom CSS styles here */
+table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+th, td {
+  border: 1px solid #dddddd;
+  text-align: left;
+  padding: 8px;
+}
+
+th {
+  background-color: #f2f2f2;
+}
+
+.user-settings {
+  margin-top: 20px;
+  padding: 20px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+
+  h1 {
+    font-size: 24px;
+    margin-bottom: 20px;
+  }
+
+  .sheduled-Job {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    p {
+      font-size: 18px;
+      margin-right: 20px;
+    }
+
+    .message-actions {
+      .send-button {
+        margin: 0;
+        background-color: #d60000;
+        color: white;
+        padding: 10px;
+        border: none;
+        border-radius: 5px;
+        &:hover {
+          background-color: #9c0000;
+        }
+      }
+    }
+  }
+}
+
+.pagination {
+  display: flex;
+  justify-content: center;
+  margin-top: 20px;
+
+  button {
+    padding: 8px 16px;
+    margin: 0 4px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    cursor: pointer;
+    background-color: #d60000;
+    color: white;
+    font-size: 14px;
+    transition: background-color 0.3s, color 0.3s;
+  }
+
+  button:hover {
+    background-color: #9c0000;
+  }
+
+  button:disabled {
+    cursor: not-allowed;
+    background-color: #ddd;
+    color: #999;
+  }
+
+  span {
+    margin: 0 10px;
+    line-height: 32px;
+  }
+}
+
+

@@ -94,7 +94,8 @@
     }
 
     button {
-      background-color: #4caf50;
+      width: 100%;
+      background-color: #a30303;
       color: white;
       padding: 10px;
       border: none;
@@ -102,7 +103,7 @@
       cursor: pointer;
 
       &:hover {
-        background-color: #45a049;
+        background-color: #860101;
       }
     }
   }

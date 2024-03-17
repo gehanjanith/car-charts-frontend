@@ -17,19 +17,24 @@
       <option *ngFor="let model of models" [value]="model">{{ model }}</option>
     </select>
   </div>
+  
   <div class="form-group">
     <label for="minYear">Min Year:</label>
-    <input type="number" id="minYear" [disabled]="!model" [(ngModel)]="minYear" required name ="minYear">
+    <select id="minYear" [(ngModel)]="minYear" required name="minYear">
+      <option *ngFor="let year of minYearOptions" [value]="year">{{ year }}</option>
+    </select>
   </div>
   
   <div class="form-group">
     <label for="maxYear">Max Year:</label>
-    <input type="number" id="maxYear" [disabled]="!model" [(ngModel)]="maxYear" required name ="maxYear">
+    <select id="maxYear" [(ngModel)]="maxYear" required name="maxYear">
+      <option *ngFor="let year of maxYearOptions" [value]="year">{{ year }}</option>
+    </select>
   </div>
-
   <div class="form-group">
     <button type="submit" (click)="searchCars()"><i class="fas fa-search" title="Search"></i></button>
   </div>
+  
 </form>
 
 
@@ -45,7 +50,7 @@
     <label for="priceRange">Price Range:</label>
     <div class="price-slider">
       <input type="range" id="priceRange" name="priceRange" [min]="minPriceCar" [max]="maxPriceCar" [(ngModel)]="priceRange2" (input)="onPriceRangeChange()">
-      <label for="priceRange">Price Filter Up to : LKR {{ priceRange2 }}</label>
+      <label for="priceRange">Price Filter Up to : {{ priceRange2 | currency:'LKR ' }}</label>
     </div> 
   </div>
 </div>
@@ -53,7 +58,7 @@
 <!-- Display search result information -->
 <div *ngIf="cars.length > 0" class="search-results-info">
   <p>Number of Results: {{ cars.length }}</p>
-  <p>Results are Priced Between Rs.{{ formatPrice(getMinPrice()) }} & Rs.{{ formatPrice(getMaxPrice()) }}</p>
+  <p>Results are Priced Between {{ formatPrice(getMinPrice()) | currency:'LKR. '}} & {{ formatPrice(getMaxPrice()) | currency:'LKR. ' }}</p>
 </div>
 
 <div class="card-container">
@@ -64,7 +69,7 @@
     <p class="card-text">Price: {{ car.price }}</p>
     <p class="card-text">City: {{ car.city }}</p>
     <p class="card-text">Source: {{ car.supplier }}</p>
-    <p class="card-text"><strong> {{ car.priceLabel }}</strong></p>
+    <p class="card-text"><strong> Our Vedict: {{ car.priceLabel }}</strong></p>
     <a [href]="car.link" target="_blank" class="btn btn-primary">Details</a>
   </div>
   </div>

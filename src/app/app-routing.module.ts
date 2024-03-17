@@ -13,7 +13,10 @@ import { HomeComponent } from './home/home.component';
 import { UserDashboardComponent } from './user-dashboard/user-dashboard.component';
 import { InboxComponent } from './inbox/inbox.component';
 import { LogoutComponent } from './logout/logout.component';
-//import { PrivateMsgComponent } from './private-msg/private-msg.component';
+import { ModelPageComponent } from './model-page/model-page.component';
+import { AppraisalDashboardComponent } from './appraisal-dashboard/appraisal-dashboard.component';
+import { AppraisalRequestComponent } from './appraisal-request/appraisal-request.component';
+import { AppraisalInboxComponent } from './appraisal-inbox/appraisal-inbox.component';
 
 
 const routes: Routes = [
@@ -32,7 +35,19 @@ const routes: Routes = [
   { path: 'user-dashboard', component: UserDashboardComponent},
   { path: 'inbox', component: InboxComponent},
   { path: 'logout', component: LogoutComponent},
-  //{ path: 'private-msg', component: PrivateMsgComponent},
+  { path: 'models', component: ModelPageComponent},
+  { path: 'appraisal-dashboard', component: AppraisalDashboardComponent},
+  { path: 'appraisal-request', component: AppraisalRequestComponent},
+  { path: 'appraisal-inbox', component: AppraisalInboxComponent},
+
+
+  
+
+
+
+  
+
+  
 
 
   

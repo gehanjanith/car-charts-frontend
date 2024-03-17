@@ -4,11 +4,126 @@
     <li class="list-item"><a routerLink="/create-post" class="list-item-link">Create a Post</a></li>
     <li class="list-item"><a routerLink="/inbox" class="list-item-link">Check Inbox</a></li>
     <li class="list-item"><a routerLink="/market-reports" class="list-item-link">Market Reports</a></li>
+    <li class="list-item"><a routerLink="/models" class="list-item-link">Model Search</a></li>
+
 
     <li class="list-item"><a routerLink="/add-user" class="list-item-link">Add User</a></li>
     <li class="list-item"><a routerLink="/edit-user" class="list-item-link">Edit User</a></li>
     <li class="list-item"><a routerLink="/delete-user" class="list-item-link">Delete User</a></li>
 
+    
+
   </ul>
 </div>
+
+<div class="hello-user">
+  <h2>Hello, {{ username }}</h2>
+</div>
+<h1>Management Reports</h1>
+
+<h2>Consolidated Vehicle Listings Report</h2>
+
+  <div class="user-dropdown">
+    <button class="dropdown-btn" (click)="toggleVehicleListingsTable()">
+      Vehicle Listings 
+      <i class="fas" [ngClass]="{'fa-chevron-down': !isVehicleListingsTableExpanded, 'fa-chevron-up': isVehicleListingsTableExpanded}"></i>
+    </button>
+    <div class="dropdown-content" [ngClass]="{'show': isVehicleListingsTableExpanded}">
+      <table>
+        
+        <tbody>
+          <tr>
+            <td>Nunber of local Ads: </td>
+            <td>{{ count?.count }}</td>
+            
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+
+
+
+
+ <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+
+<div class="user-dropdown">
+  <button class="dropdown-btn" (click)="toggleUserTable()">
+    User List 
+    <i class="fas" [ngClass]="{'fa-chevron-down': !isUserTableExpanded, 'fa-chevron-up': isUserTableExpanded}"></i>
+  </button>
+  <div class="dropdown-content" [ngClass]="{'show': isUserTableExpanded}">
+    <table>
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Email</th>
+          <th>Role</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let user of users">
+          <td>{{ user.name }}</td>
+          <td>{{ user.email }}</td>
+          <td>{{ user.role }}</td>
+        </tr>
+      </tbody>
+    </table>
+    <div class="pagination">
+      <button (click)="prevPage()" [disabled]="currentPage === 1">Previous</button>
+      <span>Page {{ currentPage }} of {{ getPageCount() }}</span>
+      <button (click)="nextPage()" [disabled]="currentPage === getPageCount()">Next</button>
+    </div>
+  </div>
+</div>
+
+<div class="user-dropdown">
+  <button class="dropdown-btn" (click)="toggleSearchTable()">
+    Search Records 
+    <i class="fas" [ngClass]="{'fa-chevron-down': !isSearchTableExpanded, 'fa-chevron-up': isSearchTableExpanded}"></i>
+  </button>
+  <div class="dropdown-content" [ngClass]="{'show': isSearchTableExpanded}">
+    <table>
+      <thead>
+        <tr>
+          <th>Make</th>
+          <th>Modal</th>
+          <th>Min Year</th>
+          <th>Max Year</th>
+          <th>Timestamp</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let record of searchRecordsCurrentPage">
+
+        <!-- <tr *ngFor="let record of searchRecords"> -->
+          <td>{{ record.make }}</td>
+          <td>{{ record.modal }}</td>
+          <td>{{ record.minYear }}</td>
+          <td>{{ record.maxYear }}</td>
+          <td>{{ record.timestamp }}</td>
+        </tr>
+      </tbody>
+    </table>
+    <div class="pagination">
+      <button (click)="prevPage()" [disabled]="currentPage === 1">Previous</button>
+      <span>Page {{ currentPage }} of {{ getPageCount() }}</span>
+      <button (click)="nextPage()" [disabled]="currentPage === getPageCount()">Next</button>
+    </div>
+  </div>
+</div>
+
+
+<div class="user-settings">
+  <h1>Settings</h1>
+  <div class="sheduled-Job">
+    <p> Run the scheduled job: </p>
+    <mat-dialog-actions class="message-actions">
+      <button mat-button color="primary" class="send-button" (click)="runJob()">Run</button>
+    </mat-dialog-actions>
+  </div>
+</div>
+
+
 
