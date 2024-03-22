@@ -10,9 +10,10 @@ export class InboxChatService {
 
   constructor(private http: HttpClient) {}
 
-  savePrivateMessage(postId: string, msg: string, user: string): Observable<any> {
+  savePrivateMessage(postId: string, msg: string, user: string, receiver: string): Observable<any> {
     const url = `${this.baseUrl}/save-private-message`;
-    const data = { post_id: postId, msg, user };
+    const data = { post_id: postId, msg, user, receiver };
+    console.log('data',data)
 
     return this.http.post(url, data, { withCredentials: true, });
   }
@@ -22,8 +23,8 @@ export class InboxChatService {
     return this.http.get<any[]>(url);
   }
 
-  getChatsPerUser(postId: number, user: string): Observable<any[]> {
-    const url = `${this.baseUrl}/get-advertisement-private-messages-per-user/${postId}/${user}`;
+  getChatsPerUser(postId: number, user: string, receiver: string): Observable<any[]> {
+    const url = `${this.baseUrl}/get-advertisement-private-messages-per-user/${postId}/${user}/${receiver}`;
     return this.http.get<any[]>(url);
   }
 }

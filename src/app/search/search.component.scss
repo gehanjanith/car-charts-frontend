@@ -57,7 +57,7 @@
       cursor: pointer;
       transition: background-color 0.3s;
       margin-top: 10px;
-      width: 1cm;
+      width: 1.5cm;
   
       &:hover {
         background-color: #9c0000;
@@ -65,7 +65,7 @@
     }
   }
 
-  .sort-btn {
+  .btn-secondary {
     padding: 8px 15px;
     background-color: #d60000;
     color: white;
@@ -96,8 +96,9 @@
     justify-content: space-around;
   
     .card {
-      width: 300px;
-      margin: 20px;
+      width: 250px;
+      height: 450px;
+      //margin: 20px;
       box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
       border-radius: 8px;
       overflow: hidden;

@@ -11,11 +11,13 @@ export class PrivateMsgComponent implements OnInit {
   message: string = '';
   messages: any[] = [];
   username: string | null = '';
+  receiver!: string;
 
   // Mark postId, user as an input property
   @Input() user!: string;
   @Input() postId!: number;
   @Input() owner!: string;
+  
 
   constructor(
     public dialogRef: MatDialogRef<PrivateMsgComponent>,
@@ -32,6 +34,8 @@ export class PrivateMsgComponent implements OnInit {
 
     this.owner  = this.data.owner;
     console.log('fetchMessages-before init owner', this.owner);
+    this.receiver = this.owner;
+    console.log('receiver',this.receiver)
 
     // Get username from session storage
     this.username = sessionStorage.getItem('username');
@@ -55,9 +59,11 @@ export class PrivateMsgComponent implements OnInit {
     }
 
     const { postId } = this.data;
-    this.messageService.savePrivateMessage(postId, this.message, this.username).subscribe(
+    this.messageService.savePrivateMessage(postId, this.message, this.username, this.receiver).subscribe(
       (response) => {
-        console.log(response);
+        console.log('receiver passed to save PM: ',this.receiver)
+        console.log('response',response);
+       
         // Optionally handle success (close modal, show success message, etc.)
         this.dialogRef.close();
       },

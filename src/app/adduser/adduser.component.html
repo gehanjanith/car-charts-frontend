@@ -1,46 +1,77 @@
-<h1>Add a New User</h1>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Add New User</title>
+  <!-- Bootstrap CSS -->
+  <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
 
-<div [ngClass]="{'collapsed': isCollapsed}" class="list-box">
-  <button (click)="toggleSidebar()" class="hamburger-btn">&#9776;</button>
-  <ul>
-    <li class="list-item"><a routerLink="/dashboard" class="list-item-link">Home Page</a></li>
-    <li class="list-item"><a routerLink="/inbox" class="list-item-link">Check Inbox</a></li>
-    <li class="list-item"><a routerLink="/market-reports" class="list-item-link">Market Reports</a></li>
-  </ul>
-</div>
-<div class="addUser-container">
-  <div class="form-container">
-<form class="addUser-form" (ngSubmit)="onSubmit()">
-    <label>Username: <input [(ngModel)]="formData.name" type="text" name="name" required></label><br>
-    <label>Password: <input [(ngModel)]="formData.password" type="password" name="password" pattern='(?=.*[a-zA-Z])(?=.*\d.*\d.*\d).{8,}' #password="ngModel" required></label><br>
-    <div *ngIf="password.invalid && (password.dirty || password.touched)">
-        <div *ngIf="password.errors" class="error-message">Password is required</div>
-        <div *ngIf="password.errors" class="error-message">Password must have at least 8 characters, 3 numbers</div>
+  <!-- Sidebar -->
+  <div [ngClass]="{'collapsed': isCollapsed}" class="list-box">
+    <button (click)="toggleSidebar()" class="hamburger-btn">&#9776;</button>
+    <ul>
+      <li class="list-item"><a routerLink="/dashboard" class="list-item-link">Home Page</a></li>
+      <li class="list-item"><a routerLink="/inbox" class="list-item-link">Check Inbox</a></li>
+      <li class="list-item"><a routerLink="/market-reports" class="list-item-link">Market Reports</a></li>
+    </ul>
+  </div>
+
+  <!-- Add User Form -->
+  <div class="container">
+    <h1>Add New User</h1>
+    <div class="addUser-container">
+      <div class="form-container">
+        <form class="addUser-form" (ngSubmit)="onSubmit()" #userForm="ngForm">
+          <div class="form-group">
+            <label>Username: <input [(ngModel)]="formData.name" type="text" name="name" required></label><br>
+          </div>
+          <div class="form-group">
+            <label>Password: <input [(ngModel)]="formData.password" type="password" name="password" pattern='(?=.*[a-zA-Z])(?=.*\d.*\d.*\d).{8,}' #password="ngModel" required></label><br>
+              <div *ngIf="password.invalid && (password.dirty || password.touched)">
+              <div *ngIf="password.errors" class="error-message">Password is required</div>
+              <div *ngIf="password.errors" class="error-message">Password must have at least 8 characters, 3 numbers</div>
+          </div>
+          </div>
+          <div class="form-group">
+            
+            <label>Confirm Password: <input [(ngModel)]="formData.confirmPassword" name="confirmPassword" type="password" #confirmPassword="ngModel" required></label><br>
+            <div *ngIf="formData.password !== formData.confirmPassword" class="error-message">Passwords do not match</div>
+
+          </div>
+          <div class="form-group">
+            <label>Email: 
+              <input [(ngModel)]="formData.email" name="email"  type="email" pattern="[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$" #email="ngModel" required>
+              <div *ngIf="email.invalid && (email.dirty || email.touched)">
+                <div *ngIf="email.errors" class="error-message">Please enter a valid email address.</div>
+            
+            </div>
+            </label><br>
+          </div>
+          <div class="form-group">
+            <label>Role:
+              <select [(ngModel)]="formData.role" name="Role" required>
+                <option value="user">Individual</option>
+                <option value="seller">Sales Person</option>
+              </select>
+            </label><br>
+          </div>
+          <button type="submit" [disabled]="userForm.invalid" [class.disabled-button]="userForm.invalid">Add User</button>
+
+        </form>
+      </div>
     </div>
 
-    <label>Confirm Password: <input [(ngModel)]="formData.confirmPassword" name="confirmPassword" type="password" #confirmPassword="ngModel" required></label><br>
-    <div *ngIf="formData.password !== formData.confirmPassword" class="error-message">Passwords do not match</div>
-
-    <!-- <label>Email: <input [(ngModel)]="formData.email" type="text" name="email" required></label><br> -->
-    <label>Email: 
-      <input [(ngModel)]="formData.email" name="email"  type="email" pattern="[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$" #email="ngModel" required>
-      <div *ngIf="email.invalid && (email.dirty || email.touched)">
-        <div *ngIf="email.errors" class="error-message">Please enter a valid email address.</div>
-    
+    <!-- Message Box -->
+    <div *ngIf="isUserAdd" class="message-box alert alert-success">
+      User has been added!
     </div>
-    </label><br>
+  </div>
 
-    <label>Role:
-        <select [(ngModel)]="formData.role" name="Role" required>
-          <option value="user">Individual</option>
-          <option value="seller">Selles Person</option>
-        </select>
-      </label><br>
+  <!-- Bootstrap JS -->
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>
 
-    <button type="save">Add User</button>
-</form>    
-</div>
-<div *ngIf="isUserAdd" class="message-box">
-    User has been added!
-</div>
-</div>

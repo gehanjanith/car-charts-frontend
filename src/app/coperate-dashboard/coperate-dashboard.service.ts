@@ -5,7 +5,7 @@ import { Observable } from 'rxjs';
 @Injectable({
   providedIn: 'root',
 })
-export class PrivateMessageService {
+export class CoperateDashboardService {
   private baseUrl = 'http://localhost:5000'; // Replace with your actual backend URL
 
   constructor(private http: HttpClient) {}
@@ -18,13 +18,14 @@ export class PrivateMessageService {
     return this.http.post(url, data, { withCredentials: true, });
   }
 
-  getPrivateMessages(user: string): Observable<any[]> {
-    const url = `${this.baseUrl}/get-private-messages/${user}`;
-    return this.http.get<any[]>(url);
-  }
+//   getChatsPerPost(postId: number): Observable<any[]> {
+//     const url = `${this.baseUrl}/get-advertisement-private-messages/${postId}`;
+//     return this.http.get<any[]>(url);
+//   }
 
-  getPrivateMessagesPerPost(postId: number,user: string,owner: string): Observable<any[]> {
-    const url = `${this.baseUrl}/get-user-private-messages/${postId}/${user}/${owner}`;
-    return this.http.get<any[]>(url);
-  }
+//   getChatsPerUser(postId: number, user: string, receiver: string): Observable<any[]> {
+//     const url = `${this.baseUrl}/get-advertisement-private-messages-per-user/${postId}/${user}/${receiver}`;
+//     return this.http.get<any[]>(url);
+//   }
+
 }

@@ -12,6 +12,7 @@ export class AdduserComponent {
 
   isCollapsed = false;
 
+  
   toggleSidebar() {
     this.isCollapsed = !this.isCollapsed;
   }
@@ -20,11 +21,13 @@ export class AdduserComponent {
 
   formData: any = {};
 
+
   constructor(private dataService: DataService) {}
 
   onSubmit() {
     this.dataService.postData(this.formData).subscribe(
       (response) => {
+        console.log('formData', this.formData);
         console.log(response);
         // Handle success, e.g., show a success message
       },

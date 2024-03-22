@@ -58,9 +58,11 @@ import { Router } from '@angular/router';
 })
 export class AppraisalInboxComponent implements OnInit {
 
+
   appraisalListings: Appraisal[] = [];
   username: string = ''; // Assuming username will be fetched from session storage or somewhere else
   selectedAppraisalId: string | null = null;
+  isCollapsed = false;
 
   constructor(private http: HttpClient, private dialog: MatDialog, private router: Router) { }
 
@@ -68,6 +70,10 @@ export class AppraisalInboxComponent implements OnInit {
     this.username = sessionStorage.getItem('username') || ''; // Fetch username from session storage
     this.fetchAppraisalListings();
   }
+
+   toggleSidebar() {
+     this.isCollapsed = !this.isCollapsed;
+   }
 
   fetchAppraisalListings(): void {
     const apiUrl = `http://localhost:5000/get-all-appraisal-per-user/${this.username}`;

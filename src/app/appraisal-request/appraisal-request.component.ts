@@ -13,6 +13,10 @@ export class AppraisalRequestComponent {
   models: string[] = [];
   make: string = '';
   model: string = '';
+  yearOptions: string[] = [];
+  year:  number | undefined ;
+
+
 
   ngOnInit(): void {
     this.appraisalService.getMakes().subscribe(makes => {
@@ -51,6 +55,14 @@ export class AppraisalRequestComponent {
     const selectedModel = (event.target as HTMLSelectElement)?.value;
     this.model = selectedModel;
     console.log('onModelChange model:',this.model )
+    this.fetchYearOptions();
+  }
+  fetchYearOptions() {
+    if (this.make && this.model) {
+      this.appraisalService.getModelsYear(this.make, this.model).subscribe(years => {
+        this.yearOptions = years;
+      });
+    }
   }
 
   onSubmit() {
@@ -67,6 +79,9 @@ export class AppraisalRequestComponent {
         () => {
           this.isPostSent = true;
           console.log("formData sucessflly saved",this.formData);
+          setTimeout(() => {
+            this.isPostSent = false;
+          }, 5000);
         },
         (error) => {
           console.error('Error submitting data:', error);

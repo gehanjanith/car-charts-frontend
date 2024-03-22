@@ -39,22 +39,15 @@
       <p><strong>Engine Capacity:</strong> {{ post.engine_capacity }}</p>
       <p><strong>Fuel Type:</strong> {{ post.fuel_type }}</p>
       <p><strong>Mileage:</strong> {{ post.mileage }}</p>
+      <p><strong>Mileage:</strong> {{ post.mileage }}</p>
+      <p><strong>Date:</strong> {{ post.posted_date }}</p>
+      <p><strong>Posted By:</strong> {{ post.user }}</p>
+
       <!-- Add other fields as needed -->
-  
-      <!-- Button to open message modal -->
-     
-  
-      <!-- <app-messages *ngIf="selectedPostId === post.id" [postId]="+post.id"></app-messages> -->
+
       
-      
-  
-      <!-- <button type="pvtMsg">Private Msg</button> -->
-      <button (click)="openPrivateMessageModalForPost(post)" type="pvtMsg" >Private Msg</button>
-  
-      <!-- <app-messages *ngIf="selectedPostId === post.user" [owner]="+post.user"></app-messages> -->
-  
-  
-                               
+      <!-- <button (click)="openPrivateMessageModalForPost(post)" type="pvtMsg" >Private Msg</button> -->
+                                
       <button (click)="openValuateModalForPost(post)" type="Valuate" >Valuate</button>
     </div>
   </div>

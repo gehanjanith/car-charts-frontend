@@ -8,10 +8,13 @@ import { InboxChatService } from './inbox-chats.service';
   styleUrls: ['./inbox-chats.component.scss']
 })
 export class InboxChatsComponent implements OnInit {
-  messages: string[] = [];
-  users: string[] = [];
-  selectedUser: string | null = null;
+  messages: any[] = [];
+  receiver: string  = '';
+  username: string | null = '';
   newMessage: string = '';
+  users: Set<string> = new Set<string>();
+  sender: string  = '';
+  user: any;
 
   constructor(
     public dialogRef: MatDialogRef<InboxChatsComponent>,
@@ -21,29 +24,44 @@ export class InboxChatsComponent implements OnInit {
 
   ngOnInit(): void {
     this.messageService.getChatsPerPost(this.data.postId).subscribe((data) => {
-      this.users = data.map((item: any) => item.user);
+      data.forEach((item: any) => {
+        if (item.user) {
+          this.users.add(item.user);
+        }
+      });
     });
+    this.username = sessionStorage.getItem('username');
+
   }
 
   loadMessagesForUser(user: string): void {
-    this.selectedUser = user;
-    this.messageService.getChatsPerUser(this.data.postId, user).subscribe((data: any[]) => {
-      this.messages = data.map((item: any) => item.msg); // Access "msg" property directly
-      console.log("messages", this.messages);
+  this.receiver = user;
+
+  if (this.sender !== null && this.username !== null) {
+    this.sender = this.username;
+    this.messageService.getChatsPerUser(this.data.postId, user, this.sender).subscribe((data) => {
+      console.log('fetchMessages user', this.user,this.sender);
+      this.messages = data;
     });
+
+
+     } else {
+    console.error('Sender or receiver is null.');
+    }
   }
   
 
   sendMessage(): void {
-    if (!this.selectedUser || !this.newMessage.trim()) {
+    if (!this.username || !this.newMessage.trim()) {
       return;
     }
-
-    // Send the new message to the selected user
-    this.messageService.savePrivateMessage(this.data.postId, this.newMessage, this.selectedUser).subscribe(() => {
-      // Refresh messages after sending the message
-
-    //  this.loadMessagesForUser(this.selectedUser);
+    const { postId } = this.data;
+    this.messageService.savePrivateMessage(postId, this.newMessage, this.username, this.receiver).subscribe(
+      (response) => {
+        console.log('response',response);
+       
+        // Optionally handle success (close modal, show success message, etc.)
+        this.dialogRef.close();
 
       this.newMessage = ''; // Clear the new message input field
     });

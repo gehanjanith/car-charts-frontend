@@ -94,85 +94,6 @@ import { MarketReportsService } from './market-report.service';
     }
   }
 
-
-
-// drawScatterPlot(carListings: any[]): void {
-//   const canvas = document.getElementById('scatterPlot') as HTMLCanvasElement;
-//   const ctx = canvas?.getContext('2d');
-//   if (!ctx) {
-//       console.error('Canvas context is not available.');
-//       return;
-//   }
-
-//   // Clear previous drawings
-//   ctx.clearRect(0, 0, canvas.width, canvas.height);
-
-//   // Define chart parameters
-//   const padding = 100;
-//   const minY = padding;
-//   const maxY = canvas.height - padding;
-//   const minX = padding;
-//   const maxX = canvas.width - padding;
-
-//   // Find minimum and maximum price to calculate price range
-//   const prices = carListings.map(car => {
-//       const price = parseFloat(car.price.replace(/[^0-9.-]/g, ''));
-//       return price < 1 ? price * 10000000 : price;
-//   });
-//   const minPrice = Math.min(...prices);
-//   const maxPrice = Math.max(...prices);
-//   const priceRange = maxPrice - minPrice;
-
-//   // Draw axes and labels
-//   // ...
-
-//   // Register event listener for mouse hover
-//   canvas.addEventListener('mousemove', (event) => {
-//       const rect = canvas.getBoundingClientRect();
-//       const x = event.clientX - rect.left;
-//       const y = event.clientY - rect.top;
-
-//       // Iterate through car listings and check if mouse is hovering over any dot
-//       carListings.forEach((car, index) => {
-//           const dotX = index * 40 + padding + 10;
-//           const dotY = canvas.height - parseFloat(car.price.replace(/[^0-9.-]/g, '')) * 1000;
-
-//           // Check if mouse is within the radius of the dot
-//           if (Math.sqrt((x - dotX) ** 2 + (y - dotY) ** 2) < 5) { // Adjust the radius as needed
-//               // Display tooltip with price
-//               const tooltip = document.createElement('div');
-//               tooltip.classList.add('tooltip');
-//               tooltip.style.left = `${event.pageX}px`; // Adjust the position as needed
-//               tooltip.style.top = `${event.pageY}px`; // Adjust the position as needed
-//               tooltip.innerHTML = `<p>Price: <a href="${car.link}" target="_blank">${car.price}</a></p>`;
-//               document.body.appendChild(tooltip);
-
-//               // Remove tooltip after a delay
-//               setTimeout(() => {
-//                   tooltip.remove();
-//               }, 2000); // Adjust the delay as needed
-//           }
-//       });
-//   });
-
-//   // Draw scatter plot points
-//   carListings.forEach((car, index) => {
-//       // Calculate x and y coordinates based on price and days
-//       const x = index * 40 + padding + 10;
-//       const y = canvas.height - parseFloat(car.price.replace(/[^0-9.-]/g, '')) * 1000;
-
-//       // Draw scatter plot point
-//       ctx.beginPath();
-//       ctx.arc(x, y, 3, 0, 2 * Math.PI);
-//       ctx.fillStyle = 'blue';
-//       ctx.fill();
-
-//       // Draw text label for days difference
-//       ctx.fillStyle = 'black';
-//       ctx.fillText(car.days.toString(), x, y + 15); // Adjust text position
-//   });
-// }
-
 drawScatterPlot(carListings: any[]): void {
   const canvas = document.getElementById('scatterPlot') as HTMLCanvasElement;
   const ctx = canvas?.getContext('2d');
@@ -183,6 +104,8 @@ drawScatterPlot(carListings: any[]): void {
 
   // Clear previous drawings
   ctx.clearRect(0, 0, canvas.width, canvas.height);
+  console.log('canvas.height',canvas.height)
+  console.log('canvas.width',canvas.width)
 
   // Define chart parameters
   const padding = 100;
@@ -212,8 +135,9 @@ drawScatterPlot(carListings: any[]): void {
       // Iterate through car listings and check if mouse is hovering over any dot
       carListings.forEach((car, index) => {
           const dotX = index * 30 + padding ;
-          const dotY = canvas.height - parseFloat(car.price.replace(/[^0-9.-]/g, '')) * 1000;
-
+          //const dotY = canvas.height - parseFloat(car.price.replace(/[^0-9.-]/g, '')) * 1000;
+          const dotY = canvas.height - parseFloat(car.price.replace(/[^0-9.-]/g, '')) * 500;
+          
           // Check if mouse is within the radius of the dot
           if (Math.sqrt((x - dotX) ** 2 + (y - dotY) ** 2) < 5) { // Adjust the radius as needed
               // Display modal with price and link
@@ -245,7 +169,9 @@ drawScatterPlot(carListings: any[]): void {
   carListings.forEach((car, index) => {
       // Calculate x and y coordinates based on price and days
       const x = index * 30 + padding ;
-      const y = canvas.height - parseFloat(car.price.replace(/[^0-9.-]/g, '')) * 1000;
+      const y = canvas.height - parseFloat(car.price.replace(/[^0-9.-]/g, '')) * 500;
+      console.log('x',x)
+      console.log('y',y)
 
       // Draw scatter plot point
       ctx.beginPath();

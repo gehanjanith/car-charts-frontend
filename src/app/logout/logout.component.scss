@@ -1,50 +1,37 @@
 .logout-container {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
-    background-color: #f7f7f7; /* Light background color */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 90vh;
+  //background-color: #f7f7f7; /* Light background color */
   
-    .logout-content {
-      text-align: center;
-      background-color: #fff; /* White background color */
-      padding: 40px;
-      border-radius: 10px;
-      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Shadow effect */
+  .logout-content {
+    text-align: center;
+    background-color: #fff; /* White background color */
+    padding: 40px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Shadow effect */
   
-      h1 {
-        font-size: 24px;
-        margin-bottom: 20px;
-      }
+    h1 {
+      font-size: 24px;
+      margin-bottom: 20px;
+    }
   
-      .logout-buttons {
-        display: flex;
-        justify-content: center;
+    .logout-buttons {
+      display: flex;
+      justify-content: center;
+      margin-top: 20px; // Add margin top
   
-        .logout-btn {
-          padding: 10px 20px;
-          margin: 0 10px;
-          border: none;
-          border-radius: 5px;
-          cursor: pointer;
-          transition: background-color 0.3s ease;
+      .btn {
+        margin: 0 10px; // Adjust margin
+        cursor: pointer;
+        transition: background-color 0.3s ease;
   
-          &.confirm {
-            background-color: #f44336; /* Red color for logout button */
-            color: #fff;
-          }
-  
-          &.cancel {
-            background-color: #ccc; /* Light gray color for cancel button */
-            color: #333;
-          }
-  
-          &:hover {
-            filter: brightness(0.9); /* Darken the button on hover */
-          }
+        &:hover {
+          filter: brightness(0.9); /* Darken the button on hover */
         }
       }
     }
   }
-  
-  
+}
+

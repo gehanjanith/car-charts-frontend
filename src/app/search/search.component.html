@@ -1,79 +1,116 @@
-<div class="heading">
-  <h1>Search Your Dream Vehicle....!</h1>
-</div>
-
-<form class="search-form">
-
-   <div class="form-group">
-    <label for="make">Make:</label>
-    <select id="make" [(ngModel)]="make" (change)="onMakeSelected($event)" required name="make">
-      <option *ngFor="let make of makes" [value]="make">{{ make }}</option>
-    </select>
-  </div>
-  
-  <div class="form-group">
-    <label for="model">Model:</label>
-    <select id="model" [(ngModel)]="model"  [disabled]="!make" (change)="onModelChange($event)" required name="model">
-      <option *ngFor="let model of models" [value]="model">{{ model }}</option>
-    </select>
-  </div>
-  
-  <div class="form-group">
-    <label for="minYear">Min Year:</label>
-    <select id="minYear" [(ngModel)]="minYear" required name="minYear">
-      <option *ngFor="let year of minYearOptions" [value]="year">{{ year }}</option>
-    </select>
-  </div>
-  
-  <div class="form-group">
-    <label for="maxYear">Max Year:</label>
-    <select id="maxYear" [(ngModel)]="maxYear" required name="maxYear">
-      <option *ngFor="let year of maxYearOptions" [value]="year">{{ year }}</option>
-    </select>
-  </div>
-  <div class="form-group">
-    <button type="submit" (click)="searchCars()"><i class="fas fa-search" title="Search"></i></button>
-  </div>
-  
-</form>
-
-
-<!-- Add buttons/links for sorting -->
-
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" />
-<button (click)="sortByPrice('asc')" class="sort-btn"><i class="fas fa-sort-up"></i> Sort by Price (Asc)</button>
-<button (click)="sortByPrice('desc')" class="sort-btn"><i class="fas fa-sort-down"></i> Sort by Price (Desc)</button>
-
-<!-- Add the price range slider -->
-<div class="form-group">
-  <div class="form-group">
-    <label for="priceRange">Price Range:</label>
-    <div class="price-slider">
-      <input type="range" id="priceRange" name="priceRange" [min]="minPriceCar" [max]="maxPriceCar" [(ngModel)]="priceRange2" (input)="onPriceRangeChange()">
-      <label for="priceRange">Price Filter Up to : {{ priceRange2 | currency:'LKR ' }}</label>
-    </div> 
-  </div>
-</div>
-
-<!-- Display search result information -->
-<div *ngIf="cars.length > 0" class="search-results-info">
-  <p>Number of Results: {{ cars.length }}</p>
-  <p>Results are Priced Between {{ formatPrice(getMinPrice()) | currency:'LKR. '}} & {{ formatPrice(getMaxPrice()) | currency:'LKR. ' }}</p>
-</div>
-
-<div class="card-container">
-  <div class="card" *ngFor="let car of cars">
-  <img [src]="car.img" alt="Car Image">
-  <div class="card-body">
-    <h5 class="card-title">{{ car.title }}</h5>
-    <p class="card-text">Price: {{ car.price }}</p>
-    <p class="card-text">City: {{ car.city }}</p>
-    <p class="card-text">Source: {{ car.supplier }}</p>
-    <p class="card-text"><strong> Our Vedict: {{ car.priceLabel }}</strong></p>
-    <a [href]="car.link" target="_blank" class="btn btn-primary">Details</a>
-  </div>
-  </div>
-</div>
-  
-
-  
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Welcome to CARCHARTS.LK!</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Font Awesome CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+      .high-price {
+        color: red;
+      }
+      .fair-price {
+        color: blue;
+      }
+      .good-price {
+        color: rgb(3, 169, 224);
+      }
+      .great-price {
+        color: green;
+      }
+    </style>
+  </head>
+  <body>
+     <div class="container">
+       <div class="heading">
+         <h1>Search Your Dream Vehicle....!</h1>
+       </div>
+   
+       <form class="search-form">
+        <div class="form-group">
+          <label for="make">Make:</label>
+          <select id="make" [(ngModel)]="make" (change)="onMakeSelected($event)" required name="make">
+            <option *ngFor="let make of makes" [value]="make">{{ make }}</option>
+          </select>
+        </div>
+        
+        <div class="form-group">
+          <label for="model">Model:</label>
+          <select id="model" [(ngModel)]="model"  [disabled]="!make" (change)="onModelChange($event)" required name="model">
+            <option *ngFor="let model of models" [value]="model">{{ model }}</option>
+          </select>
+        </div>
+        
+        <div class="form-group">
+          <label for="minYear">Min Year:</label>
+          <select id="minYear" [(ngModel)]="minYear" required name="minYear">
+            <option *ngFor="let year of minYearOptions" [value]="year">{{ year }}</option>
+          </select>
+        </div>
+        
+        <div class="form-group">
+          <label for="maxYear">Max Year:</label>
+          <select id="maxYear" [(ngModel)]="maxYear" required name="maxYear">
+            <option *ngFor="let year of maxYearOptions" [value]="year">{{ year }}</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <button type="submit" (click)="searchCars()"><i class="fas fa-search" title="Search"></i></button>
+        </div>
+       </form>
+   
+       <!-- Buttons/links for sorting -->
+       <div class="btn-group mt-3" role="group">
+         <button type="button" class="btn btn-secondary" (click)="sortByPrice('asc')"><i class="fas fa-sort-up"></i> Sort by Price (Asc)</button>
+         <button type="button" class="btn btn-secondary" (click)="sortByPrice('desc')"><i class="fas fa-sort-down"></i> Sort by Price (Desc)</button>
+       </div>
+   
+       <!-- Price range slider -->
+       <div class="form-group mt-3">
+         <label for="priceRange">Price Range:</label>
+         <div class="price-slider">
+           <input type="range" id="priceRange" name="priceRange" class="form-control-range" [min]="minPriceCar" [max]="maxPriceCar" [(ngModel)]="priceRange2" (input)="onPriceRangeChange()">
+           <label for="priceRange">Price Filter Up to : {{ priceRange2 | currency:'LKR ' }}</label>
+         </div> 
+       </div>
+   
+       <!-- Search result information -->
+       <div *ngIf="cars.length > 0" class="search-results-info mt-3">
+         <p>Number of Results: {{ cars.length }}</p>
+         <p>Results are Priced Between {{ formatPrice(getMinPrice()) | currency:'LKR. '}} & {{ formatPrice(getMaxPrice()) | currency:'LKR. ' }}</p>
+       </div>
+   
+       <!-- Card container -->
+       <div class="card-container mt-3">
+         <div class="row">
+           <div class="col-sm-6 col-md-4 col-lg-3 mb-3" *ngFor="let car of cars">
+             <div class="card">
+               <img [src]="car.img" class="card-img-top" alt="Car Image">
+               <div class="card-body">
+                 <h5 class="card-title">{{ car.title }}</h5>
+                 <p class="card-text">Price: {{ car.price }}</p>
+                 <p class="card-text">City: {{ car.city }}</p>
+                 <p class="card-text">Source: {{ car.supplier }}</p>
+                 <!-- <p class="card-text"><strong> Our Vedict: {{ car.priceLabel }}</strong></p> -->
+                 <!-- Use ngClass to dynamically set the class based on car.priceLabel -->
+                 <p class="card-text" [ngClass]="{'high-price': car.priceLabel === 'High Price',
+                                                  'fair-price': car.priceLabel === 'Fair Price',
+                                                  'good-price': car.priceLabel === 'Good Price',
+                                                  'great-price': car.priceLabel === 'Great Price'}">
+                   <strong> {{ car.priceLabel }}</strong>
+                 <a [href]="car.link" target="_blank" class="btn btn-primary">Details</a>
+               </div>
+             </div>
+           </div>
+         </div>
+       </div>
+     </div>
+   
+     <!-- Bootstrap JS -->
+     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+  </body>
+</html>
+   

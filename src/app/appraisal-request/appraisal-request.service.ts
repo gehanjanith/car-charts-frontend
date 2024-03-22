@@ -21,4 +21,7 @@ export class AppraisalService {
   postData(data: any): Observable<any> {
     return this.http.post<any>(`${this.baseUrl}/appraisal-request`,  data );
   }
+  getModelsYear(make: string, model: string): Observable<string[]> {
+    return this.http.get<string[]>(`${this.baseUrl}/year/${make}/${model}`);
+  }
 }

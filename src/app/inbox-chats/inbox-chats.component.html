@@ -9,17 +9,18 @@
         </div>
       </div>
     </div>
-  
-    <div class="message-list" *ngIf="selectedUser">
-      <h3><strong>Messages From {{ selectedUser }}</strong></h3>
-      <ul>
-        <li *ngFor="let message of messages">
-          {{ message }}
-        </li>
-      </ul>
-    </div>
+   <div class="message-list" *ngIf="receiver">
+   <div *ngIf="messages.length > 0" class="fetched-messages">
+    <h3><strong>Messages From {{ receiver }}</strong></h3>
+    <ul class="messages-list">
+      <li *ngFor="let msg of messages" class="message-item">
+        {{ msg.msg }}  
+        <div class="username"> - {{ msg.user }} </div>
+      </li>
+    </ul>
   </div>
-  
+</div>
+
   <div class="modal-footer">
     <textarea [(ngModel)]="newMessage" placeholder="Type your message..."></textarea>
   </div>

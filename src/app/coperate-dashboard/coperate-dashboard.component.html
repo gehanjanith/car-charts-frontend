@@ -44,23 +44,28 @@
     <p><strong>Phone:</strong> {{ post.phone }}</p>
     <p><strong>Price:</strong> {{ post.price }}</p>
     <p><strong>Date:</strong> {{ post.date }}</p>
-    <!-- Add other fields as needed -->
+    <p><strong>Posted By:</strong> {{ post.user }}</p>
 
     <!-- Button to open message modal -->
     <button (click)="openMessageModalForPost(post)" type="msg" >Comment</button>
 
     <app-messages *ngIf="selectedPostId === post.id" [postId]="+post.id"></app-messages>
     
-    
-
-    <!-- <button type="pvtMsg">Private Msg</button> -->
     <button (click)="openPrivateMessageModalForPost(post)" type="pvtMsg" >Private Msg</button>
 
-    <!-- <app-messages *ngIf="selectedPostId === post.user" [owner]="+post.user"></app-messages> -->
+    <!-- <app-messages *ngIf="selectedPostId === post.user" [owner]="+post.user"></app-messages> -->     
+    <!-- <button (click)="AcceptOffer(post)" type="Accept" >Accept</button> -->
+    <button (click)="showConfirmationDialog(post)" type="Accept">Accept</button>
 
+    <!-- Warning message dialog -->
+    <div *ngIf="showWarningDialog" class="warning-dialog">
+      <h2>Warning..!</h2>
+      <p>You are about to accept this offer. This post will be temperrarily removed, and a message will be generated to the user. </p>
+      <p>Are you sure?</p>
+      <button mat-button color="primary" (click)="AcceptOffer()">Yes</button>
+      <button mat-button color="warn" (click)="cancel()">No</button>
+    </div>
 
-                             
-    <button type="Accept">Accept</button>
   </div>
 </div>
 </div>

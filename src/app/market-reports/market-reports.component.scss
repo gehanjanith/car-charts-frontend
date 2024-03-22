@@ -41,12 +41,13 @@
 
 .search-form {
   display: flex;
-  flex-wrap: wrap;
-  border: 1px solid #ddd; /* Add border */
-  padding: 20px; /* Add padding for spacing */
-  border-radius: 8px; /* Add border radius for rounded corners */
-  justify-content: center; /* Center vertically */
-  align-items: center; /* Center horizontally */
+    flex-wrap: wrap;
+    border: 1px solid #ddd;
+    padding: 10px;
+    border-radius: 8px;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 20px; /* Add some space below the form */
 
   }
   
@@ -112,8 +113,8 @@
   }
   
   .chart-box {
-    width: 500%; /* Adjust width as needed */
-    
+    width: 100%;
+    margin: 0 auto; /* Center the chart horizontally */
     border: 1px solid #ccc;
   }
   

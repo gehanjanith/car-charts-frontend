@@ -56,8 +56,18 @@
   
       <!-- <button type="pvtMsg">Private Msg</button> -->
       <button (click)="openChatModalForPost(post)" type="pvtMsg" >See Messages</button>
+
+      <button (click)="showConfirmationDialog(post)" type="Accept">Delete Post</button>
+
+      <!-- Warning message dialog -->
+      <div *ngIf="showWarningDialog" class="warning-dialog">
+        <h2>Warning..!</h2>
+        <p>You are about to accept this offer. This post will be temperrarily removed, and a message will be generated to the user. </p>
+        <p>Are you sure?</p>
+        <button mat-button color="primary" (click)="AcceptOffer()">Yes</button>
+        <button mat-button color="warn" (click)="cancel()">No</button>
+      </div>
   
-      <!-- <app-messages *ngIf="selectedPostId === post.user" [owner]="+post.user"></app-messages> -->
   
   
                     

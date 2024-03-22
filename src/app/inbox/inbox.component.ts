@@ -15,12 +15,18 @@ export class InboxComponent implements OnInit{
 
   isCollapsed = false;
   // postId!: string;
-   postId!: number;
+  postId!: string; // Declare postId property at the top of the component class
+
+   //postId!: number;
    user!: string;
  post!: Post ;
  selectedPostId: string | null = null;
  username: any;
  owner: any;
+ confirmationMessage = '';
+ showWarningDialog = false;
+
+
       toggleSidebar() {
        this.isCollapsed = !this.isCollapsed;
       }
@@ -103,5 +109,37 @@ export class InboxComponent implements OnInit{
        console.log(`Dialog result: ${result}`);
      });
    }
+
+   showConfirmationDialog(post: Post): void {
+    this.postId = post.id;
+    console.log('post', this.postId);
+    this.showWarningDialog = true;
+  }
+  
+  // Method to cancel action
+  cancel(): void {
+    this.showWarningDialog = false;
+  }
+  
+  AcceptOffer() {
+    console.log('post', this.postId);
+    // Make a DELETE request to delete the post with the specified ID
+    this.http.delete<any>(`http://localhost:5000/delete-post/${this.postId}`).subscribe(
+        response => {
+            console.log(response.message); // Log the response message
+            // Handle any additional logic after successful deletion
+  
+            window.location.reload(); // Reload the page
+  
+        },
+        error => {
+            console.error('Error:', error); // Log any errors
+            // Handle error scenarios, such as displaying error messages to the user
+        }
+    );
+  }
+
+
+
 
 }

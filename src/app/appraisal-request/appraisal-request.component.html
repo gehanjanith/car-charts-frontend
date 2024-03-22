@@ -1,6 +1,17 @@
-<h1>Make an Request for valuate Your Vehical</h1>
+<!DOCTYPE html>
+ <html lang="en">
+ <head>
+   <meta charset="UTF-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <title>Create an Advertisement</title>
+   <!-- Bootstrap CSS -->
+   <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+ </head>
+ <body>
 
- <div [ngClass]="{'collapsed': isCollapsed}" class="list-box">
+ <h1>Make a Request to Valuate Your Vehicle</h1>
+
+<div [ngClass]="{'collapsed': isCollapsed}" class="list-box">
   <button (click)="toggleSidebar()" class="hamburger-btn">&#9776;</button>
   <ul>
     <li class="list-item"><a routerLink="/dashboard" class="list-item-link">Home Page</a></li>
@@ -9,57 +20,81 @@
   </ul>
 </div>
 
- <div class="create-post-container">
+<div class="create-post-container">
   <div class="form-container">
-    <form (ngSubmit)="onSubmit()">
-      <label for="make">Make:</label>
-      <!-- <input id="make" type="text" name="make" [(ngModel)]="formData.make" required> -->
-      <select id="make" [(ngModel)]="formData.make" (change)="onMakeSelected($event)" required name="make">
-        <option *ngFor="let make of makes" [value]="make">{{ make }}</option>
-      </select>
+    <form (ngSubmit)="onSubmit()" class="needs-validation" novalidate>
+      <div class="form-group">
+        <label for="make">Make:</label>
+        <select id="make" [(ngModel)]="formData.make" (change)="onMakeSelected($event)" required name="make" class="form-control">
+          <option *ngFor="let make of makes" [value]="make">{{ make }}</option>
+        </select>
+      </div>
 
-      <label for="model">Model:</label>
-      <!-- <input id="model" type="text" name="model" [(ngModel)]="formData.model" required> -->
-      <select id="model" [(ngModel)]="formData.model"  [disabled]="!make" (change)="onModelChange($event)" required name="model">
-        <option *ngFor="let model of models" [value]="model">{{ model }}</option>
-      </select>
+      <div class="form-group">
+        <label for="model">Model:</label>
+        <select id="model" [(ngModel)]="formData.model" [disabled]="!make" (change)="onModelChange($event)" required name="model" class="form-control">
+          <option *ngFor="let model of models" [value]="model">{{ model }}</option>
+        </select>
+      </div>
 
-      <label for="year">Year:</label>
-      <input id="year" type="number" name="year" [(ngModel)]="formData.year" required>
+      <div class="form-group">
+        <label for="year">Year:</label>
+        <select id="year" [(ngModel)]="formData.year" required name="year" class="form-control">
+          <option *ngFor="let year of yearOptions" [value]="year">{{ year }}</option>
+        </select>
+        <div class="invalid-feedback">Please select a year.</div>
+      </div>
 
-      <label for="edition">Edition:</label>
-      <input id="edition" type="text" name="edition" [(ngModel)]="formData.edition" required>
+      <div class="form-group">
+        <label for="edition">Edition:</label>
+        <input id="edition" type="text" name="edition" [(ngModel)]="formData.edition" required class="form-control">
+      </div>
 
-      <label for="condition">Condition:</label>
-      <input id="condition" type="text" name="condition" [(ngModel)]="formData.condi" required>
+      <div class="form-group">
+        <label for="condition">Condition:</label>
+        <input id="condition" type="text" name="condition" [(ngModel)]="formData.condi" required class="form-control">
+      </div>
 
-      <label for="bodyType">Body Type:</label>
-      <input id="bodyType" type="text" name="bodyType" [(ngModel)]="formData.body_type" required>
+      <div class="form-group">
+        <label for="bodyType">Body Type:</label>
+        <input id="bodyType" type="text" name="bodyType" [(ngModel)]="formData.body_type" required class="form-control">
+      </div>
 
-      <label for="engineCapacity">Engine Capacity:</label>
-      <input id="engineCapacity" type="text" name="engineCapacity" [(ngModel)]="formData.engine_capacity" required>
+      <div class="form-group">
+        <label for="engineCapacity">Engine Capacity:</label>
+        <input id="engineCapacity" type="text" name="engineCapacity" [(ngModel)]="formData.engine_capacity" required class="form-control">
+      </div>
 
-      <label for="fuelType">Fuel Type:</label>
-      <select id="fuelType" name="fuelType" [(ngModel)]="formData.fuel_type" required>
-        <option value="Petrol">Petrol</option>
-        <option value="Diesel">Diesel</option>
-        <option value="Hybrid">Hybrid</option>
-        <option value="Electric">Electric</option>
-      </select>
+      <div class="form-group">
+        <label for="fuelType">Fuel Type:</label>
+        <select id="fuelType" name="fuelType" [(ngModel)]="formData.fuel_type" required class="form-control">
+          <option value="Petrol">Petrol</option>
+          <option value="Diesel">Diesel</option>
+          <option value="Hybrid">Hybrid</option>
+          <option value="Electric">Electric</option>
+        </select>
+      </div>
 
-      <label for="mileage">Mileage:</label>
-      <input id="mileage" type="number" name="mileage" [(ngModel)]="formData.mileage" required>
+      <div class="form-group">
+        <label for="mileage">Mileage:</label>
+        <input id="mileage" type="number" name="mileage" [(ngModel)]="formData.mileage" required class="form-control">
+      </div>
 
-      <label for="description">Description:</label>
-      <textarea id="description" name="description" [(ngModel)]="formData.description" required></textarea>
+      <div class="form-group">
+        <label for="description">Description:</label>
+        <textarea id="description" name="description" [(ngModel)]="formData.description" required class="form-control"></textarea>
+      </div>
 
-
-      <button type="submit">Submit</button>
+      <button type="submit" class="btn btn-primary">Submit</button>
     </form>
   </div>
 
-  <div *ngIf="isPostSent" class="message-box">
+  <div *ngIf="isPostSent" class="message-box alert alert-success">
     Valuation Request has been sent!
   </div>
 </div>
 
+  <!-- Bootstrap JS -->
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>

@@ -7,6 +7,7 @@ import { Observable } from 'rxjs';
   providedIn: 'root',
 })
 export class DataService {
+  
   private baseUrl = 'http://localhost:5000'; // Update with your Flask API endpoint
 
   constructor(private http: HttpClient) {}
@@ -21,5 +22,9 @@ export class DataService {
 
   postData(data: any): Observable<any> {
     return this.http.post<any>(`${this.baseUrl}/post`,  data );
+  }
+
+  getModelsYear(make: string, model: string): Observable<string[]> {
+    return this.http.get<string[]>(`${this.baseUrl}/year/${make}/${model}`);
   }
 }

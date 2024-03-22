@@ -1,5 +1,8 @@
 import { Component } from '@angular/core';
 import { DataService } from '../create-post/create-post.service';
+//import { FormControl, Validators } from '@angular/forms';
+import { FormGroup, FormBuilder,FormControl,Validators  } from '@angular/forms';
+
 
 
 @Component({
@@ -14,6 +17,10 @@ export class CreatePostComponent {
   models: string[] = [];
   make: string = '';
   model: string = '';
+  yearOptions: string[] = [];
+  year:  number | undefined ;
+  makeInput: FormControl = new FormControl('', Validators.required);
+
 
   ngOnInit(): void {
     this.dataService.getMakes().subscribe(makes => {
@@ -28,7 +35,19 @@ export class CreatePostComponent {
 
   formData: any = {};
 
-  constructor(private dataService: DataService) {}
+  // constructor(private dataService: DataService,private fb: FormBuilder) {}
+  myForm: FormGroup;
+
+  constructor(private dataService: DataService,private fb: FormBuilder) { 
+  this.myForm = this.fb.group({
+    makeInput: ['', Validators.required],
+    modelInput: ['', Validators.required],
+    yearInput: ['', Validators.required],
+    phoneInput: ['', Validators.required],
+    // Define other form controls here with their respective validators
+  });
+}
+
   
   fetchModels(make: string): void {
     this.dataService.getModels(make).subscribe(models => {
@@ -52,6 +71,14 @@ export class CreatePostComponent {
     const selectedModel = (event.target as HTMLSelectElement)?.value;
     this.model = selectedModel;
     console.log('onModelChange model:',this.model )
+    this.fetchYearOptions();
+  }
+  fetchYearOptions() {
+    if (this.make && this.model) {
+      this.dataService.getModelsYear(this.make, this.model).subscribe(years => {
+        this.yearOptions = years;
+      });
+    }
   }
 
   onSubmit() {
@@ -68,6 +95,9 @@ export class CreatePostComponent {
         () => {
           this.isPostSent = true;
           console.log("formData sucessflly saved",this.formData);
+          setTimeout(() => {
+            this.isPostSent = false;
+          }, 5000);
         },
         (error) => {
           console.error('Error submitting data:', error);
@@ -78,6 +108,10 @@ export class CreatePostComponent {
       console.error('Username not found in session storage.');
       // Handle the case where username is not found in session storage
     }
+  }
+
+  isFormValid(): boolean {
+    return this.makeInput && this.makeInput.valid; // Add similar checks for other fields
   }
   
 

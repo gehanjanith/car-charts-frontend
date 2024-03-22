@@ -5,6 +5,8 @@ import { MessagesComponent } from '../messages/messages.component';
 import { Post } from './post.model'; // Import the Post model
 import { PrivateMsgComponent } from '../private-msg/private-msg.component';
 import { Router } from '@angular/router';
+import { CoperateDashboardService } from './coperate-dashboard.service';
+
 
 
 
@@ -15,17 +17,27 @@ import { Router } from '@angular/router';
 })
 
 export class CoperateDashboardComponent implements OnInit {
-  isCollapsed = false;
- // postId!: string;
-  postId!: number;
-  user!: string;
+
+isCollapsed = false;
+
+user!: string;
 post!: Post ;
 selectedPostId: string | null = null;
 username: any;
-owner: any;
-     toggleSidebar() {
-      this.isCollapsed = !this.isCollapsed;
-     }
+owner!: string; // Declare owner as a global variable
+showWarningDialog = false;
+confirmationMessage = '';
+postToAccept: Post | null = null; // Store the post to accept
+postId!: string; // Declare postId property at the top of the component class
+message = '';
+carListings: Post[] = [];
+
+
+
+
+  toggleSidebar() {
+    this.isCollapsed = !this.isCollapsed;
+  }
    
 
   ngOnInit(): void {
@@ -42,10 +54,12 @@ owner: any;
       );
   }
 
-  carListings: Post[] = [];
 
 
-  constructor(private http: HttpClient, private dialog: MatDialog, private router: Router) { }
+  constructor(private http: HttpClient, 
+      private dialog: MatDialog, 
+      private router: Router,   
+      private coperateDashboardService: CoperateDashboardService) { }
 
   openMessageModal(postId: string, user: string) {
     console.log('postId : ',postId)
@@ -69,7 +83,6 @@ owner: any;
     const postId = post.id;
     console.log('post',postId)
     const user = 'loggedUser'; // Replace with the actual logged-in user
-   //this.selectedPostId = post.id;
     this.openMessageModal(postId, user);
 
     //open messages
@@ -78,7 +91,6 @@ owner: any;
   openPrivateMessageModalForPost(post: Post) {
     // Assuming each post has a 'postId' property
     
-  
    console.log('Posts',post )
     const postId = post.id;
     const owner = post.user;
@@ -111,6 +123,67 @@ owner: any;
       console.log(`Dialog result: ${result}`);
     });
   }
+ 
+
+  // Method to show the warning dialog
+showConfirmationDialog(post: Post): void {
+  this.postId = post.id;
+  console.log('post', this.postId);
+  this.showWarningDialog = true;
+  this.owner = post.user; // Assign the owner value
+}
+
+// Method to cancel action
+cancel(): void {
+  this.showWarningDialog = false;
+}
+
+AcceptOffer() {
+  console.log('post', this.postId);
+  
+ 
+  // Make a PUT request to update the post with the specified ID
+  this.http.put<any>(`http://localhost:5000/accept-offer-post/${this.postId}`, {}).subscribe(
+      response => {
+          console.log(response.message); // Log the response message
+          this.sendMessage()
+
+          
+      },
+      error => {
+          console.error('Error:', error); // Log any errors
+          // Handle error scenarios, such as displaying error messages to the user
+      }
+  );
+}
+
+sendMessage() {
+  if (!this.username) {
+    console.error('Username not found in session storage.');
+    return;
+  }
+  this.message = 'AUTO GENERATED MESSAGE: I would like to purchase this vehical at this posted price'
+
+  console.log('postId',this.postId)
+  console.log('message',this.message)
+  console.log('username',this.username)
+  console.log('owner',this.owner)
+
+  this.coperateDashboardService.savePrivateMessage(this.postId, this.message, this.username, this.owner).subscribe(
+    (response) => {
+      console.log('response',response);
+
+      window.location.reload();
+      //Reload the page
+
+      },
+    (error) => {
+      console.error(error);
+      // Optionally handle error (show error message, etc.)
+    }
+  );
+}
+
 }
 
 
