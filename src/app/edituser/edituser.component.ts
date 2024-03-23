@@ -14,6 +14,7 @@ export class EdituserComponent implements OnInit {
   isUserFound = false;
   isUserAdd = false;
   isEditFailed = false;
+  userRole: any;
 
   constructor(private route: ActivatedRoute, private editUserService: EditUserService) {}
 
@@ -22,6 +23,8 @@ export class EdituserComponent implements OnInit {
    }
 
   ngOnInit() {
+    this.userRole = sessionStorage.getItem('role');
+
     // Use paramMap observable to subscribe to changes in route parameters
     this.route.paramMap.subscribe(paramMap => {
       const userIdFromRoute = paramMap.get('id');

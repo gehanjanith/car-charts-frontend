@@ -19,12 +19,14 @@ export class AppraisalDashboardComponent implements OnInit {
   appraisalListings: Appraisal[] = []; // Initialize appraisalListings as an array of Appraisal
   username: any;
   selectedAppraisalId: string | null = null;
+  userRole: any;
 
 
   constructor(private http: HttpClient, private dialog: MatDialog, private router: Router) { }
 
   ngOnInit(): void {
     this.username = sessionStorage.getItem('username');
+    this.userRole = sessionStorage.getItem('role');
     this.http.get<Appraisal[]>('http://localhost:5000/get-all-new-appraisals')
       .subscribe(
         (data: Appraisal[]) => {
@@ -45,10 +47,6 @@ export class AppraisalDashboardComponent implements OnInit {
     // Implement your method logic here
     const appraisalId = appraisal.id;
     const owner = appraisal.user;
-    // if (this.username === owner) {
-    //   // If they are the same, navigate to the inbox page
-    //   this.router.navigate(['/inbox']);
-    // } else 
     
     {
       this.openPrivateMessageModal(appraisalId, this.username, owner);

@@ -1,48 +1,3 @@
-// import { Component, OnInit } from '@angular/core';
-// import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
-// import { HttpClient } from '@angular/common/http';
-// import { Router } from '@angular/router';
-// import { Appraisal } from '../appraisal-dashboard/appraisal.model';
-
-
-// @Component({
-//   selector: 'app-appraisal-inbox',
-//   templateUrl: './appraisal-inbox.component.html',
-//   styleUrls: ['./appraisal-inbox.component.scss']
-// })
-// export class AppraisalInboxComponent implements OnInit {
-
-//   username: any;
-//   isCollapsed = false;
-//   appraisalListings: Appraisal[] = [];
-//   appraisalListings: Appraisal[] = [];
-
-  
-//   constructor(private http: HttpClient, private dialog: MatDialog, private router: Router) { }
-
-
-//   toggleSidebar() {
-//     this.isCollapsed = !this.isCollapsed;
-//    }
-
-//   ngOnInit(): void {
-//     this.username = sessionStorage.getItem('username');
-//      this.http.get<Appraisal[]>(`http://localhost:5000/get-all-appraisal-per-user/${this.username}`)
-
-//        .subscribe(
-//          (data: Appraisal[]) => {
-//            this.appraisalListings = data;
-//            console.log('carListings',this.appraisalListings)
-//          },
-//          (error) => {
-//            console.error('Error fetching posts:', error);
-//          }
-//        );
-//   }
-
-// }
-
-
 import { Component, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Appraisal } from '../appraisal-dashboard/appraisal.model'; // Import the Appraisal model
@@ -63,11 +18,13 @@ export class AppraisalInboxComponent implements OnInit {
   username: string = ''; // Assuming username will be fetched from session storage or somewhere else
   selectedAppraisalId: string | null = null;
   isCollapsed = false;
+  userRole: any;
 
   constructor(private http: HttpClient, private dialog: MatDialog, private router: Router) { }
 
   ngOnInit(): void {
     this.username = sessionStorage.getItem('username') || ''; // Fetch username from session storage
+    this.userRole = sessionStorage.getItem('role');
     this.fetchAppraisalListings();
   }
 

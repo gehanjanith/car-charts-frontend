@@ -20,9 +20,12 @@ export class CreatePostComponent {
   yearOptions: string[] = [];
   year:  number | undefined ;
   makeInput: FormControl = new FormControl('', Validators.required);
+  userRole: any;
 
 
   ngOnInit(): void {
+    this.userRole = sessionStorage.getItem('role');
+
     this.dataService.getMakes().subscribe(makes => {
       this.makes = makes;
     });

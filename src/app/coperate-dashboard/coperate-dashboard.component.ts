@@ -31,6 +31,7 @@ postToAccept: Post | null = null; // Store the post to accept
 postId!: string; // Declare postId property at the top of the component class
 message = '';
 carListings: Post[] = [];
+userRole: any;
 
 
 
@@ -42,6 +43,8 @@ carListings: Post[] = [];
 
   ngOnInit(): void {
     this.username = sessionStorage.getItem('username');
+    this.userRole = sessionStorage.getItem('role');
+
     this.http.get<Post[]>('http://localhost:5000/get-all-posts')
       .subscribe(
         (data: Post[]) => {

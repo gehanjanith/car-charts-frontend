@@ -27,11 +27,14 @@ export class UserDashboardComponent implements OnInit {
   currentPage: number = 1;
   pageSize: number = 10;
 item: any;
+userRole: any;
 
   constructor(private modelReportService: ModelReportService) { }
 
   ngOnInit(): void {
     this.username = sessionStorage.getItem('username');
+    this.userRole = sessionStorage.getItem('role');
+
     this.loadModelReport();
   }
   isCollapsed = false;

@@ -40,9 +40,8 @@ export class LoginComponent implements OnInit {
         if (response.success) {
           // Login successful
           sessionStorage.setItem('username', this.username);
+          sessionStorage.setItem('role', response.role);
           this.invalidLogin = false;
-          //this.router.navigate(['dashboard']);
-          // Check the role and navigate accordingly
         switch (response.role) {
           case 'seller':
             this.router.navigate(['coperate-dashboard']);

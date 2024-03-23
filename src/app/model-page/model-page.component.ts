@@ -18,6 +18,7 @@ export class ModelPageComponent implements OnInit {
   vehiclePrice: any = null;
   username: any;
   isCollapsed = false;
+userRole: any;
 
 
   
@@ -25,6 +26,8 @@ export class ModelPageComponent implements OnInit {
 
   ngOnInit(): void {
     this.username = sessionStorage.getItem('username');
+    this.userRole = sessionStorage.getItem('role');
+
     this.modelPageService.getMakes().subscribe(makes => {
       this.makes = makes;
     });
@@ -66,39 +69,6 @@ export class ModelPageComponent implements OnInit {
       });
     }
   }
-
-  // searchVehicle(): void {
-  //   if (this.selectedMake && this.selectedModel && this.selectedYear) {
-  //     this.modelPageService.searchVehicle(this.selectedMake, this.selectedModel, this.selectedYear)
-  //       .subscribe((data: any[]) => {
-  //         if (data && data.length > 0) {
-  //           const lastResult = data[data.length - 1]; // Take only the last result
-  //           // Map average price, maximum price, and minimum price from the last result
-  //           this.vehiclePrice = {
-  //             avgPrice: lastResult.avg_price,
-  //             maxPrice: lastResult.max_price,
-  //             minPrice: lastResult.min_price
-  //           };
-  
-  //           // Extract data for the line chart
-  //           const chartData = data.map(item => ({
-  //             date: new Date(item.date),
-  //             avgPrice: item.avg_price,
-  //             maxPrice: item.max_price,
-  //             minPrice: item.min_price
-  //           }));
-  //           console.log('chartData.',chartData);
-  
-  //           // Draw the line chart
-  //           this.drawChart(chartData);
-  //         } else {
-  //           console.error('No data found.');
-  //         }
-  //       });
-  //   } else {
-  //     console.error('Please select make, model, and year before searching.');
-  //   }
-  // }
 
   searchVehicle(): void {
     if (this.selectedMake && this.selectedModel && this.selectedYear) {

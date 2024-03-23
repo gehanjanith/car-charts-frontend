@@ -19,14 +19,6 @@ export class MarketReportsService {
     return this.http.get<string[]>(`${this.baseUrl}/models/${make}`);
   }
 
-  // getCarListings(make: string, model: string, minYear: number, maxYear: number) {
-  //   let params = new HttpParams()
-  //     .set('minYear', minYear.toString())
-  //     .set('maxYear', maxYear.toString());
-
-      
-  //   return this.http.get(`${this.baseUrl}/scrape/${make}/${model}`, { params });
-  // }
   getCarListings(make: string, model: string, minYear: number, maxYear: number): Observable<any> {
     return this.http.get(`${this.baseUrl}/plot/${make}/${model}?minYear=${minYear}&maxYear=${maxYear}`);
   }

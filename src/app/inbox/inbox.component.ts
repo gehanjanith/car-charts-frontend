@@ -14,17 +14,16 @@ import { Router } from '@angular/router';
 export class InboxComponent implements OnInit{
 
   isCollapsed = false;
-  // postId!: string;
   postId!: string; // Declare postId property at the top of the component class
 
-   //postId!: number;
-   user!: string;
- post!: Post ;
- selectedPostId: string | null = null;
- username: any;
- owner: any;
- confirmationMessage = '';
- showWarningDialog = false;
+  user!: string;
+  post!: Post ;
+  selectedPostId: string | null = null;
+  username: any;
+  owner: any;
+  confirmationMessage = '';
+  showWarningDialog = false;
+  userRole: any;
 
 
       toggleSidebar() {
@@ -34,6 +33,8 @@ export class InboxComponent implements OnInit{
  
    ngOnInit(): void {
      this.username = sessionStorage.getItem('username');
+     this.userRole = sessionStorage.getItem('role');
+
      this.http.get<Post[]>(`http://localhost:5000/get-all-posts-per-user/${this.username}`)
 
        .subscribe(

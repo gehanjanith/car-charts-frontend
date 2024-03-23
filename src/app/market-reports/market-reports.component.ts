@@ -31,10 +31,13 @@ import { MarketReportsService } from './market-report.service';
   priceRange2: number = 0;
   minYearOptions: string[] = [];
   maxYearOptions: string[] = [];
+  userRole: any;
 
   constructor(private marketReportsService: MarketReportsService) {}
 
   ngOnInit(): void {
+    this.userRole = sessionStorage.getItem('role');
+
     this.marketReportsService.getMakes().subscribe(makes => {
       this.makes = makes;
     });  

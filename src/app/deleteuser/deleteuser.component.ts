@@ -13,6 +13,7 @@ export class DeleteuserComponent implements OnInit{
   formData: any = {};
   isUserFound = false;
   isUserDeleted = false;
+  userRole: any;
  
 
   constructor(private route: ActivatedRoute, private deleteUserService: DeleteUserService) {}
@@ -22,6 +23,8 @@ export class DeleteuserComponent implements OnInit{
    }
 
   ngOnInit() {
+    this.userRole = sessionStorage.getItem('role');
+
     // Use paramMap observable to subscribe to changes in route parameters
     this.route.paramMap.subscribe(paramMap => {
       const userIdFromRoute = paramMap.get('id');

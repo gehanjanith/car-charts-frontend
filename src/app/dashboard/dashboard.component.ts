@@ -1,74 +1,5 @@
-// import { Component, OnInit } from '@angular/core';
-// import { ReportService } from './report.service';
-
-// @Component({
-//   selector: 'app-dashboard',
-//   templateUrl: './dashboard.component.html',
-//   styleUrls: ['./dashboard.component.scss']
-// })
-// export class DashboardComponent implements OnInit{
-
-//   username: any;
-//   users: any[] = [];
-//   searchRecords: any[] = [];
-
-//   isUserTableExpanded = false;
-//   isSearchTableExpanded = false;
-
-
-//   constructor(private reportService: ReportService) { }
-
-  
-//   ngOnInit(): void {
-//     this.username = sessionStorage.getItem('username');
-//     this.loadUsers();
-//     this.fetchSearchRecords();
-
-//   }
-//   isCollapsed = false;
-
-//   toggleSidebar() {
-//     this.isCollapsed = !this.isCollapsed;
-//   }
-//   loadUsers(): void {
-//     this.reportService.getUsers().subscribe(data => {
-//       this.users = data;
-//     });
-//   }
-//   toggleUserTable(): void {
-//     this.isUserTableExpanded = !this.isUserTableExpanded;
-//   }
-//   toggleSearchTable(): void {
-//     this.isSearchTableExpanded = !this.isSearchTableExpanded;
-//   }
-
-//   fetchSearchRecords(): void {
-//     this.reportService.getSearchRecords().subscribe(data => {
-//       this.searchRecords = data;
-//     });
-//   }
-
-//   runJob() {
-//     this.reportService.runPriceUpdateJob()
-//       .subscribe(
-//         (data: any) => {
-          
-//         },
-//         (        error: any) => {
-//           console.error('Error fetching car data:', error);
-//         }
-//       );
-//     }
-
-// }
-
 import { Component, OnInit } from '@angular/core';
 import { ReportService } from './report.service';
-
-
-
-
-
 
 @Component({
   selector: 'app-dashboard',
@@ -93,12 +24,15 @@ export class DashboardComponent implements OnInit {
   pageSize: number = 10;
   Object: any;
   count: any | undefined;
+  userRole: any;
   
 
   constructor(private reportService: ReportService) { }
 
   ngOnInit(): void {
     this.username = sessionStorage.getItem('username');
+    this.userRole = sessionStorage.getItem('role');
+
     this.loadUsers();
     this.fetchSearchRecords();
     this.fetchVehicleListings();
@@ -173,15 +107,6 @@ export class DashboardComponent implements OnInit {
   getPageCount(): number {
     return Math.ceil(this.searchRecords.length / this.pageSize);
   }
-
-
-
-
-
-
-
-
-
 
   runJob() {
         this.reportService.runPriceUpdateJob()

@@ -15,10 +15,13 @@ export class AppraisalRequestComponent {
   model: string = '';
   yearOptions: string[] = [];
   year:  number | undefined ;
+  userRole: any;
 
 
 
   ngOnInit(): void {
+    this.userRole = sessionStorage.getItem('role');
+
     this.appraisalService.getMakes().subscribe(makes => {
       this.makes = makes;
     });

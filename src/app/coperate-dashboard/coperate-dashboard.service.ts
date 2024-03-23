@@ -18,14 +18,4 @@ export class CoperateDashboardService {
     return this.http.post(url, data, { withCredentials: true, });
   }
 
-//   getChatsPerPost(postId: number): Observable<any[]> {
-//     const url = `${this.baseUrl}/get-advertisement-private-messages/${postId}`;
-//     return this.http.get<any[]>(url);
-//   }
-
-//   getChatsPerUser(postId: number, user: string, receiver: string): Observable<any[]> {
-//     const url = `${this.baseUrl}/get-advertisement-private-messages-per-user/${postId}/${user}/${receiver}`;
-//     return this.http.get<any[]>(url);
-//   }
-
 }

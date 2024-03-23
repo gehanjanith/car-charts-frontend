@@ -13,8 +13,42 @@
   <div [ngClass]="{'collapsed': isCollapsed}" class="list-box">
     <button (click)="toggleSidebar()" class="hamburger-btn">&#9776;</button>
     <ul class="list-unstyled">
-      <li class="list-item"><a routerLink="/inbox" class="list-item-link">Check Inbox</a></li>
-      <li class="list-item"><a routerLink="/market-reports" class="list-item-link">Market Reports</a></li>
+      <ng-container *ngIf="userRole === 'admin'">
+        <li class="list-item"><a routerLink="/dashboard" class="list-item-link">Dash Board</a></li>
+        <li class="list-item"><a routerLink="/create-post" class="list-item-link">Create a Post</a></li>
+        <li class="list-item"><a routerLink="/inbox" class="list-item-link">Check Inbox</a></li>
+        <li class="list-item"><a routerLink="/models" class="list-item-link">Model Search</a></li>
+        <li class="list-item"><a routerLink="/add-user" class="list-item-link">Add User</a></li>
+        <li class="list-item"><a routerLink="/edit-user" class="list-item-link">Edit User</a></li>
+        <li class="list-item"><a routerLink="/delete-user" class="list-item-link">Delete User</a></li>
+  </ng-container>
+  
+  <ng-container *ngIf="userRole === 'seller'">
+        <li class="list-item"><a routerLink="/coperate-dashboard" class="list-item-link">Dash Board</a></li>
+        <li class="list-item"><a routerLink="/create-post" class="list-item-link">Create a Post</a></li>
+        <li class="list-item"><a routerLink="/inbox" class="list-item-link">Check Inbox</a></li>
+        <li class="list-item"><a routerLink="/models" class="list-item-link">Model Search</a></li>
+        <li class="list-item"><a routerLink="/market-reports" class="list-item-link">Market Reports</a></li>
+        <li class="list-item"><a routerLink="/appraisal-request" class="list-item-link">Appraisal Request</a></li>
+        <li class="list-item"><a routerLink="/appraisal-inbox" class="list-item-link">Appraisal Inbox</a></li>
+  
+  </ng-container>
+  
+  <ng-container *ngIf="userRole === 'user'">
+        <li class="list-item"><a routerLink="/user-dashboard" class="list-item-link">Dash Board</a></li>
+        <li class="list-item"><a routerLink="/create-post" class="list-item-link">Create a Post</a></li>
+        <li class="list-item"><a routerLink="/inbox" class="list-item-link">Check Inbox</a></li>
+        <li class="list-item"><a routerLink="/models" class="list-item-link">Model Search</a></li>
+        <li class="list-item"><a routerLink="/market-reports" class="list-item-link">Market Reports</a></li>
+        <li class="list-item"><a routerLink="/appraisal-request" class="list-item-link">Appraisal Request</a></li>
+        <li class="list-item"><a routerLink="/appraisal-inbox" class="list-item-link">Appraisal Inbox</a></li>
+  </ng-container>
+  
+  <ng-container *ngIf="userRole === 'appraiser'">
+        <li class="list-item"><a routerLink="/appraisal-dashboard" class="list-item-link">Dash Board</a></li>
+        <li class="list-item"><a routerLink="/market-reports" class="list-item-link">Market Reports</a></li>
+        <li class="list-item"><a routerLink="/models" class="list-item-link">Model Search</a></li>
+  </ng-container>
     </ul>
   </div>
 
