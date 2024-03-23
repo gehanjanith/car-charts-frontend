@@ -52,7 +52,9 @@ export class DeleteuserComponent implements OnInit{
         (response) => {
           console.log(response);
           this.isUserDeleted = true;
-          // Handle success, e.g., show a success message
+          setTimeout(() => {
+            this.isUserDeleted = false;
+          }, 5000);
         },
         (error) => {
           console.error(error);

@@ -61,12 +61,16 @@ export class EdituserComponent implements OnInit {
         (response) => {
           console.log(response);
           this.isUserAdd = true;
-          // Handle success, e.g., show a success message
+          setTimeout(() => {
+            this.isUserAdd = false;
+          }, 5000);
         },
         (error) => {
           console.error(error);
           this.isEditFailed = true;
-          // Handle error, e.g., show an error message
+          setTimeout(() => {
+            this.isEditFailed = false;
+          }, 5000);
         }
       );
     } else {

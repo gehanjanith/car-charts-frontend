@@ -29,14 +29,16 @@ export class AdduserComponent {
       (response) => {
         console.log('formData', this.formData);
         console.log(response);
-        // Handle success, e.g., show a success message
+        setTimeout(() => {
+          this.isUserAdd = false;
+        }, 5000);
       },
       (error) => {
         console.error(error);
         // Handle error, e.g., show an error message
       }
     );
-    this.isUserAdd = true;
+    //this.isUserAdd = true;
   }
 
 }
