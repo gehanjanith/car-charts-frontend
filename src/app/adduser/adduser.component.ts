@@ -29,6 +29,8 @@ export class AdduserComponent {
       (response) => {
         console.log('formData', this.formData);
         console.log(response);
+        this.isUserAdd = true;
+
         setTimeout(() => {
           this.isUserAdd = false;
         }, 5000);

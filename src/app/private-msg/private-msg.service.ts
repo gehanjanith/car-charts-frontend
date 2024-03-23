@@ -24,7 +24,9 @@ export class PrivateMessageService {
   }
 
   getPrivateMessagesPerPost(postId: number,user: string,owner: string): Observable<any[]> {
-    const url = `${this.baseUrl}/get-user-private-messages/${postId}/${user}/${owner}`;
+    //const url = `${this.baseUrl}/get-user-private-messages/${postId}/${user}/${owner}`;
+    const url = `${this.baseUrl}/get-advertisement-private-messages-per-user/${postId}/${user}/${owner}`;
+
     return this.http.get<any[]>(url);
   }
 }

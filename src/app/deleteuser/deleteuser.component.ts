@@ -40,7 +40,10 @@ export class DeleteuserComponent implements OnInit{
     this.deleteUserService.searchUserByName(this.formData.name).subscribe(
       (user) => {
         this.formData = user;
+        this.userId = this.formData.id
         this.isUserFound = true;
+        console.log('searched userId', this.userId);
+
       },
       (error) => {
         console.error(error);
@@ -55,6 +58,7 @@ export class DeleteuserComponent implements OnInit{
         (response) => {
           console.log(response);
           this.isUserDeleted = true;
+
           setTimeout(() => {
             this.isUserDeleted = false;
           }, 5000);

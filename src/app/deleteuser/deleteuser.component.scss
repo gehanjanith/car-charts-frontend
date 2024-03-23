@@ -100,4 +100,29 @@
       }
     }
   }
+  /* Message box styles */
+.message-box {
+  padding: 10px;
+  margin-top: 10px;
+  border-radius: 5px;
+  font-weight: bold;
+}
+
+.success {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: #28a745; // Bootstrap success color
+  border-color: #c3e6cb;
+  color: white;
+  padding: 20px;
+  border-radius: 5px;
+  text-align: center;
+}
+
+.error {
+  background-color: #f44336;
+  color: white;
+}
   

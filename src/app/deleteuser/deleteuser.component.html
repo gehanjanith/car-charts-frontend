@@ -55,5 +55,9 @@
     <label>Role: {{ formData.role }}</label><br>
     <button (click)="onDelete()">Delete User</button>
   </form>
+
+  <div *ngIf="isUserDeleted" class="message-box success">
+    User has been deleted successfully!
+  </div>
 </div>
 

@@ -118,8 +118,16 @@
 }
 
 .success {
-  background-color: #4caf50;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: #28a745; // Bootstrap success color
+  border-color: #c3e6cb;
   color: white;
+  padding: 20px;
+  border-radius: 5px;
+  text-align: center;
 }
 
 .error {
